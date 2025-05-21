@@ -5,10 +5,10 @@ export default function Activity({ data }) {
     <Fragment>
       <article>
         <Image
-          alt={data.name}
+          alt={data.title}
           src={data.imageUrl}
-          width="100%"
-          height="auto"
+          width={100}
+          height={100}
         ></Image>
         <div>
           <h2>{data.title}</h2>

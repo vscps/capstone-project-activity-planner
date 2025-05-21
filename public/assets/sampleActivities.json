@@ -6,7 +6,7 @@
     "area": "Soorts-Hossegor",
     "country": "France",
     "description": "Immerse yourself in the rhythmic dance of the Atlantic waves as you surf the pristine shores of Hossegor. Feel the energy of the ocean beneath your board, where each crest and break becomes a moment of pure exhilaration. Hossegor, a haven for surfers, invites you to ride the tides and embrace the artistry of the sea.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/5689750/pexels-photo-5689750.jpeg"
   },
   {
     "id": "2",
@@ -15,7 +15,7 @@
     "area": "Garmisch-Partenkirchen",
     "country": "Germany",
     "description": "Embark on a journey through the enchanting landscapes of Garmisch, where every step is a discovery of alpine grandeur. Traverse ancient forests, ascend majestic peaks, and breathe in the crisp mountain air as you explore trails that lead to panoramic vistas. Garmisch, a tapestry of emerald meadows and cascading waterfalls, beckons hikers to embrace the embrace of nature's wonder.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/746386/pexels-photo-746386.jpeg"
   },
   {
     "id": "3",
@@ -24,7 +24,7 @@
     "area": "Phang Nga Bay",
     "country": "Thailand",
     "description": "Glide through the emerald waters of Phang Nga Bay, where limestone cliffs rise majestically from the sea. Kayaking in this tropical paradise is a journey through hidden lagoons and picturesque caves. Let the tranquility of the bay surround you as you paddle beneath towering karst formations, creating memories of serenity in the heart of Thailand's natural beauty.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/15953852/pexels-photo-15953852/free-photo-of-kanu-auf-dem-see.jpeg"
   },
   {
     "id": "4",
@@ -33,7 +33,7 @@
     "area": "Onomichi",
     "country": "Japan",
     "description": "Explore the charming streets of Onomichi on two wheels, where each pedal takes you on a journey through time and tradition. Bike through narrow alleys, past historic temples, and along the scenic Shimanami Kaido cycling route. Onomichi, a quaint coastal town, invites cyclists to savor the beauty of its landscapes and the warmth of its cultural heritage.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/2807963/pexels-photo-2807963.jpeg"
   },
   {
     "id": "5",
@@ -42,7 +42,7 @@
     "area": "Cappadocia",
     "country": "Turkey",
     "description": "Soar above the otherworldly landscapes of Cappadocia in a hot air balloon. Drift effortlessly over fairy-tale-like valleys, ancient rock formations, and charming villages. Experience the magic of sunrise or sunset from the sky, creating memories that defy gravity.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/210012/pexels-photo-210012.jpeg?"
   },
   {
     "id": "6",
@@ -51,7 +51,7 @@
     "area": "Fiji",
     "country": "Fiji",
     "description": "Set sail across the azure waters of the Fiji Islands, where a tapestry of coral reefs and palm-fringed islands awaits. Feel the gentle trade winds as you navigate between vibrant coral gardens and secluded bays. Sailing in Fiji is a voyage into paradise, where the turquoise sea and warm hospitality create memories of a seafaring adventure like no other.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/358326/pexels-photo-358326.jpeg"
   },
   {
     "id": "7",
@@ -60,7 +60,7 @@
     "area": "Yosemite National Park",
     "country": "USA",
     "description": "Challenge yourself with the thrilling climbs of Yosemite's granite walls. Whether you're scaling El Capitan or Half Dome, each ascent offers a unique test of skill and endurance. Yosemite's stunning vistas and rugged terrain make it a climber's paradise.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/832014/pexels-photo-832014.jpeg"
   },
   {
     "id": "8",
@@ -69,7 +69,7 @@
     "area": "Great Barrier Reef",
     "country": "Australia",
     "description": "Dive into the vibrant underwater world of the Great Barrier Reef. Encounter an array of marine life, from colorful coral formations to diverse fish species. Scuba diving here is an unparalleled experience, offering breathtaking views of one of the world's natural wonders.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/68767/divers-underwater-ocean-swim-68767.jpeg"
   },
   {
     "id": "9",
@@ -78,7 +78,7 @@
     "area": "Zermatt",
     "country": "Switzerland",
     "description": "Carve through the pristine snow of Zermatt's slopes. With the majestic Matterhorn as your backdrop, skiing in Zermatt offers a blend of challenging runs and stunning alpine scenery. Experience the thrill of the descent and the beauty of the Swiss Alps.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/2433353/pexels-photo-2433353.jpeg"
   },
   {
     "id": "10",
@@ -87,7 +87,7 @@
     "area": "Interlaken",
     "country": "Switzerland",
     "description": "Soar above the picturesque landscapes of Interlaken. Paragliding here offers a bird's-eye view of lakes, mountains, and valleys. The sensation of flying and the breathtaking scenery combine for an unforgettable adventure.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/2132013/pexels-photo-2132013.jpeg"
   },
   {
     "id": "11",
@@ -96,7 +96,7 @@
     "area": "Whistler",
     "country": "Canada",
     "description": "Experience the thrill of mountain biking in Whistler, renowned for its challenging trails and stunning scenery. Ride through dense forests, over rocky terrains, and down exhilarating slopes. Whistler offers an adventure that tests your skills and rewards you with breathtaking views.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/90454/pexels-photo-90454.jpeg?"
   },
   {
     "id": "12",
@@ -105,7 +105,7 @@
     "area": "Molokini Crater",
     "country": "USA",
     "description": "Discover the vibrant underwater world of Molokini Crater, a partially submerged volcanic crater. Snorkeling here provides an opportunity to swim alongside colorful coral reefs and diverse marine life in crystal-clear waters. Molokini offers an unforgettable experience for nature enthusiasts.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/2121302/pexels-photo-2121302.jpeg"
   },
   {
     "id": "13",
@@ -114,7 +114,7 @@
     "area": "Queenstown",
     "country": "New Zealand",
     "description": "Feel the adrenaline rush as you skydive over the stunning landscapes of Queenstown. Experience the ultimate adventure as you freefall from a plane, enjoying panoramic views of mountains, lakes, and valleys. Skydiving in Queenstown is a thrill-seeker's dream.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/70361/california-parachutists-skydivers-flares-70361.jpeg"
   },
   {
     "id": "14",
@@ -123,7 +123,7 @@
     "area": "Waitomo Caves",
     "country": "New Zealand",
     "description": "Explore the underground wonders of the Waitomo Caves. Navigate through a labyrinth of limestone formations and marvel at the glowworms illuminating the caves. This caving adventure offers a unique and mystical experience deep within the earth.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/163872/italy-cala-gonone-air-sky-163872.jpeg"
   },
   {
     "id": "15",
@@ -132,6 +132,6 @@
     "area": "Zambezi River",
     "country": "Zambia",
     "description": "Tackle the exhilarating rapids of the Zambezi River, one of the world's premier white water rafting destinations. Navigate through turbulent waters, surrounded by stunning gorges and wildlife. This adventure offers an intense and unforgettable rafting experience.",
-    "imageUrl": ""
+    "imageUrl": "https://images.pexels.com/photos/27828903/pexels-photo-27828903/free-photo-of-natur-fluss-wildnis-reise.jpeg"
   }
 ]
