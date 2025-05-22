@@ -18,7 +18,7 @@ const BebasNeue = Bebas_Neue({
 
 export default function App({ Component, pageProps }) {
   return (
-    <main className={`${BebasNeue.className} ${inter.className}`}>
+    <main className={` ${BebasNeue.variable} ${inter.variable} `}>
       <GlobalStyle />
       <Component {...pageProps} />
       <GlobalNavigation />

@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Image from "next/image";
 import styled from "styled-components";
+
 export default function Activity({ data }) {
   return (
     <Fragment>
