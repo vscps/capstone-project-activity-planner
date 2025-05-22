@@ -3,7 +3,7 @@ import "./Categories";
 
 const { Schema } = mongoose;
 
-const ActivitySchema = new Schema({
+const activitySchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -35,5 +35,5 @@ const ActivitySchema = new Schema({
 });
 
 const Activity =
-  mongoose.models.Activity || mongoose.model("Activity", ActivitySchema);
+  mongoose.models.Activity || mongoose.model("Activity", activitySchema);
 export default Activity;
