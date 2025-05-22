@@ -9,7 +9,6 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: var(--font-inter), system-ui, sans-serif;
     background-image: url("/assets/bg-1.svg");
     background-attachment: fixed;
   }
@@ -19,5 +18,9 @@ export default createGlobalStyle`
     font-style: normal;
     font-weight: 400;
     text-transform: uppercase;
+  }
+
+  main {
+    font-family: var(--font-inter), system-ui, sans-serif;
   }
 `;
