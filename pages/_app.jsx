@@ -2,6 +2,7 @@ import GlobalStyle from "../styles";
 import { SWRConfig } from "swr";
 import { Inter } from "next/font/google";
 import { Bebas_Neue } from "next/font/google";
+import GlobalNavigation from "@/components/GlobalNavigation/GlobalNavigation";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,9 +30,10 @@ export default function App({ Component, pageProps }) {
         },
       }}
     >
-      <main className={`${BebasNeue.className} ${inter.className}`}>
+      <main className={`${BebasNeue.variable} ${inter.variable}`}>
         <GlobalStyle />
         <Component {...pageProps} />
+        <GlobalNavigation />
       </main>
     </SWRConfig>
   );
