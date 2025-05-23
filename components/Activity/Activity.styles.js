@@ -1,55 +1,36 @@
-import { Fragment } from "react";
-import Image from "next/image";
 import styled from "styled-components";
-export default function Activity({ data }) {
-  return (
-    <Fragment>
-      <Card>
-        <ImageArea>
-          <Image
-            alt={data.title}
-            src={data.imageUrl}
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{ width: "100%", height: "auto" }}
-          />
-        </ImageArea>
+import Image from "next/image";
 
-        <TitleArea>
-          <h2 style={{ margin: "10px" }}>{data.title}</h2>
-          <CategoryArea>
-            {data.categories.map((item, index) => (
-              <Category data={item} key={index}>
-                {item}
-              </Category>
-            ))}
-          </CategoryArea>
-        </TitleArea>
-      </Card>
-    </Fragment>
-  );
-}
-
-const Card = styled.article`
+export const Card = styled.article`
   display: flex;
   flex-direction: column;
   margin: 15px 20px;
   border: 1.5px solid black;
   border-radius: 10px 10px 0 0;
-  min-width: 250px;
+  width: 100%;
   max-width: 400px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
+
+  @media (max-width: 480px) {
+    margin: 10px;
+    width: calc(100% - 20px);
+    min-width: unset;
+  }
 `;
 
-const ImageArea = styled.div`
+export const ImageArea = styled.div`
   height: 200px;
   overflow: hidden;
+  position: relative;
 `;
 
-const TitleArea = styled.div`
+export const StyledImage = styled(Image)`
+  object-fit: cover;
+`;
+
+export const TitleArea = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -61,7 +42,11 @@ const TitleArea = styled.div`
   font-size: 22px;
 `;
 
-const CategoryArea = styled.div`
+export const Heading = styled.h2`
+  margin: 10px;
+`;
+
+export const CategoryArea = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -74,7 +59,7 @@ const CategoryArea = styled.div`
   padding: 10px;
 `;
 
-const Category = styled.div`
+export const Category = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -89,5 +74,4 @@ const Category = styled.div`
   border: 1px solid grey;
   font-size: 12px;
   font-weight: 500;
-  height: 20px;
 `;
