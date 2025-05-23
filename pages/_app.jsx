@@ -1,6 +1,5 @@
 import GlobalStyle from "../styles";
 import { SWRConfig } from "swr";
-import GlobalNavigation from "../components/Navigation/Navigation";
 import { Inter } from "next/font/google";
 import { Bebas_Neue } from "next/font/google";
 
@@ -33,7 +32,6 @@ export default function App({ Component, pageProps }) {
       <main className={`${BebasNeue.className} ${inter.className}`}>
         <GlobalStyle />
         <Component {...pageProps} />
-        <GlobalNavigation />
       </main>
     </SWRConfig>
   );
