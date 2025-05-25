@@ -17,12 +17,6 @@ export const LoadingMessage = styled.p`
   margin: 20px;
 `;
 
-export const LoadMoreButton = styled.button`
-  padding: 10px 20px;
-  margin: 20px;
-  cursor: pointer;
-`;
-
 export const EndMessage = styled.p`
   text-align: center;
   margin: 20px;
