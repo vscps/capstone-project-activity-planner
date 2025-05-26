@@ -9,8 +9,10 @@ import {
   Category,
   MainContent,
   StyledActivityTitle,
+  StyledActivityCountry,
+  StyledActivityDescription,
 } from "./ActivityDetail.styles.js";
-
+import BackLink from "../BackLink/BackLink.jsx";
 export default function ActivityDetail({ data }) {
   return (
     <Container>
@@ -40,7 +42,12 @@ export default function ActivityDetail({ data }) {
         </TitleArea>
       </Card>
       <MainContent>
+        <StyledActivityCountry>Country: {data.country}</StyledActivityCountry>
         <StyledActivityTitle>Area: {data.area}</StyledActivityTitle>
+        <StyledActivityDescription>
+          {data.description}
+        </StyledActivityDescription>
+        <BackLink></BackLink>
       </MainContent>
     </Container>
   );

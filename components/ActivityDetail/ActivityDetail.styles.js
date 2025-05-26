@@ -14,19 +14,16 @@ export const Card = styled.article`
   width: 100%;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
-
-  @media (max-width: 480px) {
-    margin: 10px;
-    width: calc(100% - 20px);
-    min-width: unset;
-  }
 `;
 
 export const ImageArea = styled.div`
-  height: 400px;
+  height: 300px;
   overflow: hidden;
   position: relative;
+
+  @media (max-width: 480px) {
+    height: 200px;
+  }
 `;
 
 export const StyledImage = styled(Image)`
@@ -84,14 +81,34 @@ export const MainContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin: 5px 0px 0px 5px;
-  padding: 3px 3px;
-  background-color: #fff;
+  margin: 50px 20px 50px 20px;
+  padding: 15px 15px;
+  border-radius: 10px 10px 0 0;
+  background-color: rgba(225, 225, 225, 0.1);
+  backdrop-filter: blur(3px);
   color: #000;
   width: 100%;
   font-weight: 500;
+  max-width: 75%;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
+  @media (max-width: 480px) {
+    max-width: 90%;
+  }
 `;
 
-export const StyledActivityTitle = styled.h2`
-  margin: 20px 0px;
+export const StyledActivityCountry = styled.h2`
+  margin: 10px 0px;
+  font-size: 26px;
+`;
+
+export const StyledActivityTitle = styled.h3`
+  margin: 10px 0px;
+`;
+
+export const StyledActivityDescription = styled.p`
+  margin: 10px 0px;
+  padding: 20px 0px;
+  border-top: 1px solid #ccc;
 `;
