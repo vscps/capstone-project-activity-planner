@@ -1,5 +1,5 @@
 import {
-  StyledLink,
+  Container,
   Card,
   ImageArea,
   StyledImage,
@@ -7,12 +7,16 @@ import {
   Heading,
   CategoryArea,
   Category,
-} from "./Activity.styles";
-
-export default function Activity({ data }) {
+  MainContent,
+  StyledActivityTitle,
+  StyledActivityCountry,
+  StyledActivityDescription,
+} from "./ActivityDetail.styles.js";
+import BackLink from "../BackLink/BackLink.jsx";
+export default function ActivityDetail({ data }) {
   return (
-    <Card>
-      <StyledLink href={`./activity/${data.id}`}>
+    <Container>
+      <Card>
         <ImageArea>
           <StyledImage
             alt={data.title}
@@ -25,19 +29,26 @@ export default function Activity({ data }) {
             quality={75}
           />
         </ImageArea>
-      </StyledLink>
-      <TitleArea>
-        <StyledLink href={`./activity/${data.id}`}>
+
+        <TitleArea>
           <Heading>{data.title}</Heading>
-        </StyledLink>
-        <CategoryArea>
-          {data.categories.map((item, index) => (
-            <Category data={item} key={index}>
-              {item}
-            </Category>
-          ))}
-        </CategoryArea>
-      </TitleArea>
-    </Card>
+          <CategoryArea>
+            {data.categories.map((item, index) => (
+              <Category data={item} key={index}>
+                {item}
+              </Category>
+            ))}
+          </CategoryArea>
+        </TitleArea>
+      </Card>
+      <MainContent>
+        <StyledActivityCountry>Country: {data.country}</StyledActivityCountry>
+        <StyledActivityTitle>Area: {data.area}</StyledActivityTitle>
+        <StyledActivityDescription>
+          {data.description}
+        </StyledActivityDescription>
+        <BackLink></BackLink>
+      </MainContent>
+    </Container>
   );
 }

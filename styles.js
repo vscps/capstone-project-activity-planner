@@ -20,6 +20,9 @@ export default createGlobalStyle`
     text-transform: uppercase;
   }
 
+  h2 {
+    font-size: 2em;
+  }
   main {
     font-family: var(--font-inter), system-ui, sans-serif;
   }
