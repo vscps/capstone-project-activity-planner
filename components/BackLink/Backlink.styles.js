@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
 
-export const Container = styled.div`
+export const Container = styled.Link`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;
 
 export const Arrow = styled.div`
+  font-size: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 `;
 
 export const LinkText = styled.p`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0;
 `;
