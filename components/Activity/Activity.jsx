@@ -1,4 +1,5 @@
 import {
+  StyledLink,
   Card,
   ImageArea,
   StyledImage,
@@ -11,21 +12,24 @@ import {
 export default function Activity({ data }) {
   return (
     <Card>
-      <ImageArea>
-        <StyledImage
-          alt={data.title}
-          src={data.imageUrl}
-          loading="lazy"
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-          fill
-          sizes="(max-width: 480px) calc(100vw - 20px), min(100%, 400px)"
-          quality={75}
-        />
-      </ImageArea>
-
+      <StyledLink href={`./activity/${data.id}`}>
+        <ImageArea>
+          <StyledImage
+            alt={data.title}
+            src={data.imageUrl}
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+            fill
+            sizes="(max-width: 480px) calc(100vw - 20px), min(100%, 400px)"
+            quality={75}
+          />
+        </ImageArea>
+      </StyledLink>
       <TitleArea>
-        <Heading>{data.title}</Heading>
+        <StyledLink href={`./activity/${data.id}`}>
+          <Heading>{data.title}</Heading>
+        </StyledLink>
         <CategoryArea>
           {data.categories.map((item, index) => (
             <Category data={item} key={index}>

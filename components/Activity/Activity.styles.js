@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
+
 export const Card = styled.article`
   display: flex;
   flex-direction: column;
@@ -19,6 +21,14 @@ export const Card = styled.article`
   }
 `;
 
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+  &:visited {
+    color: white;
+  }
+`;
+
 export const ImageArea = styled.div`
   height: 200px;
   overflow: hidden;
@@ -27,6 +37,7 @@ export const ImageArea = styled.div`
 
 export const StyledImage = styled(Image)`
   object-fit: cover;
+  display: block;
 `;
 
 export const TitleArea = styled.div`

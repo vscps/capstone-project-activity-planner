@@ -2,11 +2,17 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 
-export const Container = styled.Link`
+export const Container = styled(Link)`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:visited {
+    color: black;
+  }
 `;
 
 export const Arrow = styled.div`
