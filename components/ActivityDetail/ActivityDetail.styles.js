@@ -1,43 +1,33 @@
 import styled from "styled-components";
 import Image from "next/image";
-import Link from "next/link";
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export const Card = styled.article`
   display: flex;
   flex-direction: column;
-  margin: 15px 20px;
-  border: 1.5px solid black;
-  border-radius: 10px 10px 0 0;
+  margin: 0;
   width: 100%;
-  max-width: 400px;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
-
-  @media (max-width: 480px) {
-    margin: 10px;
-    width: calc(100% - 20px);
-    min-width: unset;
-  }
-`;
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: white;
-  &:visited {
-    color: white;
-  }
 `;
 
 export const ImageArea = styled.div`
-  height: 200px;
+  height: 300px;
   overflow: hidden;
   position: relative;
+
+  @media (max-width: 480px) {
+    height: 200px;
+  }
 `;
 
 export const StyledImage = styled(Image)`
   object-fit: cover;
-  display: block;
 `;
 
 export const TitleArea = styled.div`
@@ -49,10 +39,10 @@ export const TitleArea = styled.div`
   height: 80px;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 22px;
+  font-size: 32px;
 `;
 
-export const Heading = styled.h2`
+export const Heading = styled.h1`
   margin: 10px;
 `;
 
@@ -84,4 +74,41 @@ export const Category = styled.div`
   border: 1px solid grey;
   font-size: 12px;
   font-weight: 500;
+`;
+
+export const MainContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 50px 20px 50px 20px;
+  padding: 15px 15px;
+  border-radius: 10px 10px 0 0;
+  background-color: rgba(225, 225, 225, 0.1);
+  backdrop-filter: blur(3px);
+  color: #000;
+  width: 100%;
+  font-weight: 500;
+  max-width: 75%;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
+  @media (max-width: 480px) {
+    max-width: 90%;
+  }
+`;
+
+export const StyledActivityCountry = styled.h2`
+  margin: 10px 0px;
+  font-size: 26px;
+`;
+
+export const StyledActivityTitle = styled.h3`
+  margin: 10px 0px;
+`;
+
+export const StyledActivityDescription = styled.p`
+  margin: 10px 0px;
+  padding: 20px 0px;
+  border-top: 1px solid #ccc;
 `;
