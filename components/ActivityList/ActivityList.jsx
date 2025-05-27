@@ -58,7 +58,7 @@ export default function ActivityList() {
   }, [hasMore, isValidating, setSize, size]);
 
   if (error) {
-    return <ErrorMessage>Error: {error.message}</ErrorMessage>;
+    return <ErrorMessage>Something get wrong</ErrorMessage>;
   }
 
   if (isLoading) {

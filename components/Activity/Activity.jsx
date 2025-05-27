@@ -12,7 +12,7 @@ import {
 export default function Activity({ data }) {
   return (
     <Card>
-      <StyledLink href={`./activity/${data.id}`}>
+      <StyledLink href={`/activity/${data._id}`}>
         <ImageArea>
           <StyledImage
             alt={data.title}
@@ -27,7 +27,7 @@ export default function Activity({ data }) {
         </ImageArea>
       </StyledLink>
       <TitleArea>
-        <StyledLink href={`./activity/${data.id}`}>
+        <StyledLink href={`/activity/${data._id}`}>
           <Heading>{data.title}</Heading>
         </StyledLink>
         <CategoryArea>
