@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import {
+  CheckboxGroupWrapper,
+  CheckboxLabel,
+  ErrorText,
+} from "./CheckboxGroup.styles";
 
 export default function CategoryCheckboxGroup({
   register,
@@ -34,14 +39,11 @@ export default function CategoryCheckboxGroup({
   };
 
   return (
-    <div style={{ width: "80%" }}>
+    <CheckboxGroupWrapper>
       <fieldset name="categories">
         <legend>Please choose at least one</legend>
         {categories.map((cat) => (
-          <label
-            key={cat._id}
-            style={{ display: "block", marginBottom: "0.5rem" }}
-          >
+          <CheckboxLabel key={cat._id}>
             <input
               type="checkbox"
               value={cat.activityType}
@@ -52,12 +54,10 @@ export default function CategoryCheckboxGroup({
               })}
             />
             {cat.activityType}
-          </label>
+          </CheckboxLabel>
         ))}
       </fieldset>
-      {errors.categories && (
-        <p style={{ color: "red" }}>{errors.categories.message}</p>
-      )}
-    </div>
+      {errors.categories && <ErrorText>{errors.categories.message}</ErrorText>}
+    </CheckboxGroupWrapper>
   );
 }
