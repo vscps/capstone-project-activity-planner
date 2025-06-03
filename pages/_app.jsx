@@ -30,7 +30,10 @@ export default function App({ Component, pageProps }) {
         },
       }}
     >
-      <main className={`${BebasNeue.variable} ${inter.variable}`}>
+      <main
+        className={`${BebasNeue.variable} ${inter.variable}`}
+        style={{ paddingBottom: "6rem" }}
+      >
         <GlobalStyle />
         <Component {...pageProps} />
         <GlobalNavigation />
