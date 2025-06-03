@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FieldGroup = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 1rem;
   flex-wrap: nowrap;
   width: 100%;
@@ -13,12 +13,7 @@ export const FieldGroup = styled.div`
 export const Label = styled.label`
   width: 100px;
   margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-`;
-
-export const FieldContent = styled.div`
-  flex: 1;
+  text-align: left;
 `;
 
 export const ErrorMessage = styled.p`

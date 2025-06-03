@@ -4,15 +4,12 @@ import Image from "next/image";
 export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  align-items: flex-start;
   padding: 2rem;
   max-width: 500px;
   width: 100%;
   border-radius: 1 rem;
   gap: 1rem;
-  margin: 0 auto;
 `;
 
 export const PlaceholderImage = styled(Image)`
@@ -31,6 +28,7 @@ export const SubmitButton = styled.button`
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  align-self: center;
 
   &:hover {
     background-color: darkgrey;
