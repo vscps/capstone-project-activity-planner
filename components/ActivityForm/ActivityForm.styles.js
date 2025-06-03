@@ -1,22 +1,18 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-export const FormContainer = styled.div`
+export const FormWrapper = styled.form`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: 2rem;
-`;
-
-export const FormBox = styled.form`
-  padding: 2rem;
-  border-radius: 1rem;
   max-width: 500px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  border-radius: 1 rem;
   gap: 1rem;
+  margin: 0 auto;
 `;
 
 export const PlaceholderImage = styled(Image)`
@@ -42,6 +38,6 @@ export const SubmitButton = styled.button`
 
   &:disabled {
     background-color: #a0a0a0;
-    curser: not allowed;
+    cursor: not allowed;
   }
 `;
