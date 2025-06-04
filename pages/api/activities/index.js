@@ -46,5 +46,17 @@ export default async function handler(req, res) {
     }
   }
 
+  if (req.method === "POST") {
+    try {
+      console.log("Incoming POST body:", req.body);
+
+      const newActivity = await Activity.create(req.body);
+      return res.status(201).json(newActivity);
+    } catch (error) {
+      console.error("Creating activity failed:", error);
+      return res.status(400).json({ error: error.message });
+    }
+  }
+
   return res.status(405).json({ message: `Method not allowed` });
 }
