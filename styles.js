@@ -29,5 +29,6 @@ export default createGlobalStyle`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 150px;
   }
 `;
