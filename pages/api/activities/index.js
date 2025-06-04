@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      const { page = "1", limit = "10", categories, country } = req.query;
+      const { page = "1", limit = "10", categories, countries } = req.query;
 
       const pageNum = Math.max(1, parseInt(page, 10));
       const pageSize = Math.max(1, parseInt(limit, 10));
@@ -19,8 +19,8 @@ export default async function handler(req, res) {
         filter.categories = { $in: categoryArray };
       }
 
-      if (country) {
-        const countryArray = country.split(",");
+      if (countries) {
+        const countryArray = countries.split(",");
         filter.country = { $in: countryArray };
       }
 
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
 
       let queryParams = `limit=${pageSize}`;
       if (categories) queryParams += `&categories=${categories}`;
-      if (country) queryParams += `&country=${country}`;
+      if (countries) queryParams += `&countries=${countries}`;
 
       return res.status(200).json({
         meta: {
