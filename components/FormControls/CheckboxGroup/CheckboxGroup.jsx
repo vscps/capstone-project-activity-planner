@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useFetchAllPages from "@/hooks/useFetchAllPages";
 import {
   CheckboxGroupWrapper,
   CheckboxLabel,
@@ -13,19 +14,13 @@ export default function CategoryCheckboxGroup({
 }) {
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    async function fetchCategories() {
-      try {
-        const res = await fetch("/api/categories");
-        const data = await res.json();
-        setCategories(data);
-      } catch (error) {
-        console.error("Error loading categories", error);
-      }
-    }
+  const { data: categoriesData } = useFetchAllPages("/api/categories");
 
-    fetchCategories();
-  }, []);
+  useEffect(() => {
+    setCategories(categoriesData);
+  }, [categoriesData]);
+
+  console.log(categories);
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -46,14 +41,14 @@ export default function CategoryCheckboxGroup({
           <CheckboxLabel key={cat._id}>
             <input
               type="checkbox"
-              value={cat.activityType}
+              value={cat.name}
               onChange={handleCheckboxChange}
               {...register("categories", {
                 validate: (value) =>
                   value.length > 0 || "Please select at least one category",
               })}
             />
-            {cat.activityType}
+            {cat.name}
           </CheckboxLabel>
         ))}
       </fieldset>
