@@ -20,8 +20,6 @@ export default function CategoryCheckboxGroup({
     setCategories(categoriesData);
   }, [categoriesData]);
 
-  console.log(categories);
-
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     const currentValues = getValues("categories") || [];
