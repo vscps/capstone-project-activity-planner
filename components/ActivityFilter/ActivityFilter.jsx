@@ -1,4 +1,3 @@
-import { useRef, useEffect } from "react";
 import {
   FilterContainer,
   FilterHeader,
@@ -8,10 +7,8 @@ import {
   ActiveFilters,
   ResetLink,
   FilterSection,
-  CloseButton,
 } from "./ActivityFilter.styles";
 import { LuFilter } from "react-icons/lu";
-import { IoMdClose } from "react-icons/io";
 
 export default function ActivityFilter({
   filterOptions,
@@ -20,24 +17,6 @@ export default function ActivityFilter({
   isOpen,
   onToggle,
 }) {
-  const filterRef = useRef(null);
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (filterRef.current && !filterRef.current.contains(event.target)) {
-        onToggle(false);
-      }
-    }
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen, onToggle]);
-
   const handleToggleFilter = () => {
     onToggle(!isOpen);
   };
@@ -60,61 +39,64 @@ export default function ActivityFilter({
       newFilters[key].push(value);
     }
 
-    setTimeout(() => {
-      onFilterChange(newFilters);
-    }, 0);
+    onFilterChange(newFilters);
   };
 
   const handleResetFilters = () => {
-    setTimeout(() => {
-      onFilterChange({});
-    }, 0);
+    onFilterChange({});
   };
 
   const hasActiveFilters = Object.keys(activeFilters).length > 0;
 
   return (
-    <FilterContainer ref={filterRef}>
-      <FilterHeader onClick={handleToggleFilter}>
-        <LuFilter /> Filter
+    <FilterContainer>
+      <FilterHeader
+        onClick={handleToggleFilter}
+        aria-label={`${isOpen ? "Close" : "Open"} filters`}
+        aria-expanded={isOpen}
+      >
+        <LuFilter />
       </FilterHeader>
 
       {!isOpen && hasActiveFilters && (
         <ActiveFilters>
           {Object.entries(activeFilters).map(([key, values]) =>
-            values.map((value) => (
-              <FilterTag
-                key={`${key}-${value}`}
-                onClick={() => handleSelectFilter(key, value)}
-              >
-                {value} <span>×</span>
-              </FilterTag>
-            ))
+            values.map((value) => {
+              const isActive = activeFilters[key]?.includes(value);
+              return (
+                <FilterTag
+                  key={`${key}-${value}`}
+                  $active={isActive}
+                  onClick={() => handleSelectFilter(key, value)}
+                >
+                  {value}
+                  {isActive && <span>×</span>}
+                </FilterTag>
+              );
+            })
           )}
         </ActiveFilters>
       )}
 
       {isOpen && (
         <FilterBody>
-          <CloseButton onClick={handleToggleFilter}>
-            <IoMdClose />
-          </CloseButton>
           {Object.entries(filterOptions).map(([key, values]) => (
             <FilterSection key={key}>
               <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
               <FilterTagContainer>
-                {values.map((value) => (
-                  <FilterTag
-                    key={`${key}-${value}`}
-                    active={
-                      activeFilters[key]?.includes(value) ? "true" : undefined
-                    }
-                    onClick={() => handleSelectFilter(key, value)}
-                  >
-                    {value}
-                    {activeFilters[key]?.includes(value) && <span>×</span>}
-                  </FilterTag>
-                ))}
+                {values.map((value) => {
+                  const isActive = activeFilters[key]?.includes(value);
+                  return (
+                    <FilterTag
+                      key={`${key}-${value}`}
+                      $active={isActive}
+                      onClick={() => handleSelectFilter(key, value)}
+                    >
+                      {value}
+                      {isActive && <span>×</span>}
+                    </FilterTag>
+                  );
+                })}
               </FilterTagContainer>
             </FilterSection>
           ))}

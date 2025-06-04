@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import useSWRInfinite from "swr/infinite";
 import Activity from "@/components/Activity/Activity";
 import ActivityFilter from "@/components/ActivityFilter/ActivityFilter";
+import useFetchAllPages from "@/hooks/useFetchAllPages";
 import {
   Container,
   ErrorMessage,
@@ -15,10 +16,6 @@ const PAGE_LIMIT = 5;
 export default function ActivityList() {
   const [activeFilters, setActiveFilters] = useState({});
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [filterOptions, setFilterOptions] = useState({
-    categories: [],
-    country: [],
-  });
   const loadMoreRef = useRef(null);
 
   const createFilterParams = (filters) => {
@@ -50,40 +47,23 @@ export default function ActivityList() {
     revalidateFirstPage: false,
   });
 
-  const activities = data ? data.flatMap((page) => page.data) : [];
+  const { data: categoriesData } = useFetchAllPages("/api/categories");
+  const { data: countriesData } = useFetchAllPages("/api/countries");
 
+  const activities = data ? data.flatMap((page) => page.data) : [];
   const isLoading = !data && !error;
   const hasMore = data && data[data.length - 1]?.meta?.hasNextPage;
+
+  const categories = categoriesData?.map((cat) => cat.name).sort() || [];
+  const countries = countriesData?.map((country) => country.name).sort() || [];
+  const filterOptions = {
+    categories,
+    countries,
+  };
 
   useEffect(() => {
     setSize(1);
   }, [activeFilters, setSize]);
-
-  useEffect(() => {
-    if (data && data.length > 0) {
-      const categories = new Set();
-      const countries = new Set();
-
-      data.forEach((page) => {
-        page.data.forEach((activity) => {
-          if (activity.categories && Array.isArray(activity.categories)) {
-            activity.categories.forEach((category) => {
-              categories.add(category);
-            });
-          }
-
-          if (activity.country) {
-            countries.add(activity.country);
-          }
-        });
-      });
-
-      setFilterOptions({
-        categories: Array.from(categories).sort(),
-        country: Array.from(countries).sort(),
-      });
-    }
-  }, [data]);
 
   useEffect(() => {
     if (!hasMore || isValidating) return;
