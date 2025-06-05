@@ -6,20 +6,36 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      const { page = "1", limit = "10" } = req.query;
+      const { page = "1", limit = "10", categories, countries } = req.query;
 
       const pageNum = Math.max(1, parseInt(page, 10));
       const pageSize = Math.max(1, parseInt(limit, 10));
       const skip = (pageNum - 1) * pageSize;
 
+      let filter = {};
+
+      if (categories) {
+        const categoryArray = categories.split(",");
+        filter.categories = { $in: categoryArray };
+      }
+
+      if (countries) {
+        const countryArray = countries.split(",");
+        filter.country = { $in: countryArray };
+      }
+
       const [activities, total] = await Promise.all([
-        Activity.find().skip(skip).limit(pageSize),
-        Activity.countDocuments(),
+        Activity.find(filter).skip(skip).limit(pageSize),
+        Activity.countDocuments(filter),
       ]);
 
       const totalPages = Math.ceil(total / pageSize);
       const hasNextPage = pageNum < totalPages;
       const hasPrevPage = pageNum > 1;
+
+      let queryParams = `limit=${pageSize}`;
+      if (categories) queryParams += `&categories=${categories}`;
+      if (countries) queryParams += `&countries=${countries}`;
 
       return res.status(200).json({
         meta: {
@@ -30,12 +46,12 @@ export default async function handler(req, res) {
           hasNextPage,
           hasPrevPage,
           links: {
-            self: `/api/activities?page=${pageNum}&limit=${pageSize}`,
+            self: `/api/activities?page=${pageNum}&${queryParams}`,
             next: hasNextPage
-              ? `/api/activities?page=${pageNum + 1}&limit=${pageSize}`
+              ? `/api/activities?page=${pageNum + 1}&${queryParams}`
               : null,
             prev: hasPrevPage
-              ? `/api/activities?page=${pageNum - 1}&limit=${pageSize}`
+              ? `/api/activities?page=${pageNum - 1}&${queryParams}`
               : null,
           },
         },

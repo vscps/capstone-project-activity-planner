@@ -3,9 +3,10 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const categorySchema = new Schema({
-  activityType: {
+  name: {
     type: String,
     required: true,
+    unique: true,
   },
 });
 
