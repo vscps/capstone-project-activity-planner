@@ -17,10 +17,6 @@ export default function ActivityFilter({
   isOpen,
   onToggle,
 }) {
-  const handleToggleFilter = () => {
-    onToggle(!isOpen);
-  };
-
   const handleSelectFilter = (key, value) => {
     const newFilters = { ...activeFilters };
 
@@ -51,7 +47,7 @@ export default function ActivityFilter({
   return (
     <FilterContainer>
       <FilterHeader
-        onClick={handleToggleFilter}
+        onClick={onToggle}
         aria-label={`${isOpen ? "Close" : "Open"} filters`}
         aria-expanded={isOpen}
       >

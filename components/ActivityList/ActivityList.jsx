@@ -94,6 +94,10 @@ export default function ActivityList() {
     setActiveFilters(newFilters);
   };
 
+  const handleToggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
+  };
+
   if (error) {
     return <ErrorMessage>Something went wrong</ErrorMessage>;
   }
@@ -110,7 +114,7 @@ export default function ActivityList() {
         activeFilters={activeFilters}
         onFilterChange={handleFilterChange}
         isOpen={isFilterOpen}
-        onToggle={setIsFilterOpen}
+        onToggle={handleToggleFilter}
       />
 
       {activities.length > 0 ? (
