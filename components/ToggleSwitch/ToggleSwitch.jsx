@@ -12,7 +12,7 @@ export default function ToggleSwitch({ initialState }) {
 
     setTimeout(() => {
       newState ? router.push("/favorites") : router.push("/");
-    }, 1000);
+    }, 500);
   }
 
   return (
