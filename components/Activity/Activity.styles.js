@@ -1,11 +1,23 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
+import Favorite from "../Favorite/Favorite";
 
-export const Card = styled.article`
+export const Wrapper = styled.article`
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  margin: 15px 20px;
+`;
+
+export const FavoriteIcon = styled(Favorite)`
+  top: 0px;
+  right: 0px;
+`;
+
+export const Card = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 15px 20px;
   border: 1.5px solid black;
   border-radius: 10px 10px 0 0;
   width: 100%;

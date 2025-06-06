@@ -30,5 +30,6 @@ export default createGlobalStyle`
     justify-content: center;
     align-items: center;
     padding-bottom: 150px;
+    color: grey;
   }
 `;
