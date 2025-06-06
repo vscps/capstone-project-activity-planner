@@ -7,7 +7,6 @@ export const Wrapper = styled.article`
   width: 100%;
   max-width: 400px;
   position: relative;
-  border: 2px solid red;
   margin: 15px 20px;
 `;
 

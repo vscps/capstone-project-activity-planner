@@ -13,7 +13,13 @@ import {
   StyledActivityDescription,
 } from "./ActivityDetail.styles.js";
 import BackLink from "../BackLink/BackLink.jsx";
+import Button from "../Button/Button.jsx";
+import useFavorites from "@/hooks/useFavorites.js";
 export default function ActivityDetail({ data }) {
+  const [favorites, isFavorite, toggleFavorite] = useFavorites();
+  const buttonText = isFavorite(data._id)
+    ? "Remove from favorites"
+    : "Add to favorites";
   return (
     <Container>
       <Card>
@@ -49,6 +55,12 @@ export default function ActivityDetail({ data }) {
         </StyledActivityDescription>
         <BackLink></BackLink>
       </MainContent>
+
+      <Button
+        text={buttonText}
+        onClick={() => toggleFavorite(data._id)}
+        isFavorite={isFavorite(data._id)}
+      />
     </Container>
   );
 }
