@@ -17,5 +17,5 @@ export default function useFavorites(id) {
     );
   }
 
-  return { favorites, isFavorite, toggleFavorite };
+  return [favorites, isFavorite, toggleFavorite];
 }

@@ -9,7 +9,7 @@ export const NavWrapper = styled.nav`
   display: flex;
   background-color: grey;
   border-top: 1px solid #444;
-  height: 100px;
+  height: 60px;
   z-index: 100;
 `;
 
@@ -19,7 +19,7 @@ export const NavIconLink = styled.a`
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
   text-decoration: none;
   height: 100%;
 

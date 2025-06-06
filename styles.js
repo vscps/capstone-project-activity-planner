@@ -25,5 +25,9 @@ export default createGlobalStyle`
   }
   main {
     font-family: var(--font-inter), system-ui, sans-serif;
+    color: grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
