@@ -1,4 +1,4 @@
-import Category from "@/data/models/Categories";
+import Country from "@/data/models/Countries";
 import dbConnect from "@/lib/db/dbConnect";
 
 export default async function handler(req, res) {
@@ -12,9 +12,9 @@ export default async function handler(req, res) {
       const pageSize = Math.max(1, parseInt(limit, 10));
       const skip = (pageNum - 1) * pageSize;
 
-      const [categories, total] = await Promise.all([
-        Category.find().sort({ name: 1 }).skip(skip).limit(pageSize),
-        Category.countDocuments(),
+      const [countries, total] = await Promise.all([
+        Country.find().sort({ name: 1 }).skip(skip).limit(pageSize),
+        Country.countDocuments(),
       ]);
 
       const totalPages = Math.ceil(total / pageSize);
@@ -30,16 +30,16 @@ export default async function handler(req, res) {
           hasNextPage,
           hasPrevPage,
           links: {
-            self: `/api/categories?page=${pageNum}&limit=${pageSize}`,
+            self: `/api/countries?page=${pageNum}&limit=${pageSize}`,
             next: hasNextPage
-              ? `/api/categories?page=${pageNum + 1}&limit=${pageSize}`
+              ? `/api/countries?page=${pageNum + 1}&limit=${pageSize}`
               : null,
             prev: hasPrevPage
-              ? `/api/categories?page=${pageNum - 1}&limit=${pageSize}`
+              ? `/api/countries?page=${pageNum - 1}&limit=${pageSize}`
               : null,
           },
         },
-        data: categories,
+        data: countries,
       });
     } catch (error) {
       return res.status(500).json({ error: "Server error" });
