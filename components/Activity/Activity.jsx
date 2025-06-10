@@ -13,8 +13,6 @@ import {
 import Favorite from "../Favorite/Favorite";
 
 export default function Activity({ data }) {
-  console.log(data);
-
   return (
     <Wrapper>
       <Favorite id={data._id} />
@@ -40,7 +38,7 @@ export default function Activity({ data }) {
           <CategoryArea>
             {data.categories?.map((item, index) => (
               <Category data={item} key={item._id || index}>
-                {item.name}
+                {item}
               </Category>
             ))}
           </CategoryArea>

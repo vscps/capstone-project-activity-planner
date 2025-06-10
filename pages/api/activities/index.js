@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/db/dbConnect";
 import Activity from "@/data/models/Activities";
+import Category from "@/data/models/Categories";
 
 export default async function handler(req, res) {
   await dbConnect();
@@ -15,7 +16,9 @@ export default async function handler(req, res) {
       let filter = {};
 
       if (categories) {
-        const categoryArray = categories.split(",");
+        const categoryArray = categories
+          .split(",")
+          .map((cat) => parseInt(cat, 10));
         filter.categories = { $in: categoryArray };
       }
 
@@ -24,14 +27,21 @@ export default async function handler(req, res) {
         filter.country = { $in: countryArray };
       }
 
-      const [activities, total] = await Promise.all([
-        Activity.find(filter)
-          .populate("categories")
-          .populate("country")
-          .skip(skip)
-          .limit(pageSize),
+      const [activities, total, allCategories] = await Promise.all([
+        Activity.find(filter).skip(skip).limit(pageSize),
         Activity.countDocuments(filter),
+        Category.find({}),
       ]);
+
+      const categoryMap = {};
+      allCategories.forEach((cat) => {
+        categoryMap[cat.id] = cat.name;
+      });
+
+      const enrichedActivities = activities.map((activity) => ({
+        ...activity.toObject(),
+        categories: activity.categories.map((catId) => categoryMap[catId]),
+      }));
 
       const totalPages = Math.ceil(total / pageSize);
       const hasNextPage = pageNum < totalPages;
@@ -59,7 +69,7 @@ export default async function handler(req, res) {
               : null,
           },
         },
-        data: activities,
+        data: enrichedActivities,
       });
     } catch (error) {
       return res.status(500).json({ error: "Server error" });

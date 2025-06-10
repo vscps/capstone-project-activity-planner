@@ -18,12 +18,30 @@ export default function ActivityList() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const loadMoreRef = useRef(null);
 
+  const { data: categoriesData } = useFetchAllPages("/api/categories");
+  const { data: countriesData } = useFetchAllPages("/api/countries");
+
   const createFilterParams = (filters) => {
     const params = [];
 
     Object.entries(filters).forEach(([key, values]) => {
       if (values && values.length > 0) {
-        params.push(`${key}=${encodeURIComponent(values.join(","))}`);
+        if (key === "categories") {
+          const categoryIds = values
+            .map((categoryName) => {
+              const category = categoriesData?.find(
+                (cat) => cat.name === categoryName
+              );
+              return category ? category.id : null;
+            })
+            .filter((id) => id !== null);
+
+          if (categoryIds.length > 0) {
+            params.push(`${key}=${encodeURIComponent(categoryIds.join(","))}`);
+          }
+        } else {
+          params.push(`${key}=${encodeURIComponent(values.join(","))}`);
+        }
       }
     });
 
@@ -46,9 +64,6 @@ export default function ActivityList() {
   const { data, error, size, setSize, isValidating } = useSWRInfinite(getKey, {
     revalidateFirstPage: false,
   });
-
-  const { data: categoriesData } = useFetchAllPages("/api/categories");
-  const { data: countriesData } = useFetchAllPages("/api/countries");
 
   const activities = data ? data.flatMap((page) => page.data) : [];
   const isLoading = !data && !error;
