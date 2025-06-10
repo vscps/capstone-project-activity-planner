@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Button from "@/components/Button/Button";
 
 export const FormWrapper = styled.form`
   display: flex;
@@ -19,23 +20,6 @@ export const PlaceholderImage = styled(Image)`
   border-radius: 0.5rem;
 `;
 
-export const SubmitButton = styled.button`
-  background-color: lightgrey;
-  color: black;
-  padding: 0.75 rem 1.5rem;
-  font-size: 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+export const SubmitButton = styled(Button)`
   align-self: center;
-
-  &:hover {
-    background-color: darkgrey;
-  }
-
-  &:disabled {
-    background-color: #a0a0a0;
-    cursor: not allowed;
-  }
 `;

@@ -16,9 +16,14 @@ const activitySchema = new Schema({
     required: true,
   },
 
+  // country: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Country",
+  //   required: true,
+  // },
+
   country: {
-    type: Schema.Types.ObjectId,
-    ref: "Country",
+    type: String,
     required: true,
   },
 

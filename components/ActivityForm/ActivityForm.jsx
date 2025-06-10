@@ -9,6 +9,7 @@ import {
   PlaceholderImage,
   SubmitButton,
 } from "./ActivityForm.styles";
+import Button from "../Button/Button";
 
 export default function ActivityForm({
   onSubmit,
@@ -88,9 +89,12 @@ export default function ActivityForm({
         />
       </FormField>
 
-      <SubmitButton type="submit" disabled={isSubmitting}>
-        {isSubmitting || isLoading ? "Processing..." : submitButtonText}
-      </SubmitButton>
+      <SubmitButton
+        type="submit"
+        purpose={"submit"}
+        isLoading={isLoading}
+        text={"Create activity"}
+      />
 
       {successMessage && <p>{successMessage}</p>}
     </FormWrapper>
