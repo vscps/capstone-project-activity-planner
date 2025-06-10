@@ -10,13 +10,11 @@ const activitySchema = new Schema({
     required: true,
   },
 
-  categories: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Category",
-      required: true,
-    },
-  ],
+  categories: {
+    type: [Schema.Types.ObjectId],
+    ref: "Category",
+    required: true,
+  },
 
   country: {
     type: Schema.Types.ObjectId,

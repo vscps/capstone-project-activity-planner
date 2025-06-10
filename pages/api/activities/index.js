@@ -25,7 +25,11 @@ export default async function handler(req, res) {
       }
 
       const [activities, total] = await Promise.all([
-        Activity.find(filter).skip(skip).limit(pageSize),
+        Activity.find(filter)
+          .populate("categories")
+          .populate("country")
+          .skip(skip)
+          .limit(pageSize),
         Activity.countDocuments(filter),
       ]);
 
