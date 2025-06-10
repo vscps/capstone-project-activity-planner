@@ -112,3 +112,9 @@ export const StyledActivityDescription = styled.p`
   padding: 20px 0px;
   border-top: 1px solid #ccc;
 `;
+
+export const OptionsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;

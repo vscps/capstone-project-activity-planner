@@ -1,15 +1,60 @@
 import {
+  CancelIcon,
+  ConfirmIcon,
+  DeleteIcon,
+  EditIcon,
   FavoriteIcon,
+  LoadingSpinner,
   RemoveFavoriteIcon,
   StyledButton,
+  SubmitIcon,
 } from "./Button.styles";
 
-export default function Button({ text, onClick, isFavorite }) {
-  return (
-    <StyledButton role="button" onClick={onClick}>
-      {!isFavorite ? <FavoriteIcon /> : <RemoveFavoriteIcon />}
+export default function Button({
+  text,
+  onClick,
+  purpose,
+  isFavorite,
+  isLoading,
+}) {
+  let Icon = null;
+  if (isLoading) {
+    Icon = <LoadingSpinner />;
+  } else {
+    switch (purpose) {
+      case "favorite":
+        Icon = !isFavorite ? <FavoriteIcon /> : <RemoveFavoriteIcon />;
+        break;
+      case "delete":
+        Icon = <DeleteIcon />;
+        break;
+      case "edit":
+        Icon = <EditIcon />;
+        break;
+      case "submit":
+        Icon = <SubmitIcon />;
+        break;
+      case "cancel":
+        Icon = <CancelIcon />;
+        break;
+      case "confirm":
+        Icon = <ConfirmIcon />;
+        break;
+      default:
+        Icon = null;
+    }
+  }
 
-      {text}
+  return (
+    <StyledButton
+      role="button"
+      onClick={onClick}
+      $purpose={purpose}
+      $isLoading={isLoading}
+      disabled={isLoading}
+    >
+      {Icon}
+      {isLoading ? "Processing" : text}
     </StyledButton>
   );
 }
