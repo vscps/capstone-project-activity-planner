@@ -11,6 +11,7 @@ import {
   StyledActivityTitle,
   StyledActivityCountry,
   StyledActivityDescription,
+  OptionsWrapper,
 } from "./ActivityDetail.styles.js";
 import BackLink from "../BackLink/BackLink.jsx";
 import Button from "../Button/Button.jsx";
@@ -53,14 +54,28 @@ export default function ActivityDetail({ data }) {
         <StyledActivityDescription>
           {data.description}
         </StyledActivityDescription>
+
         <BackLink></BackLink>
       </MainContent>
-
-      <Button
-        text={buttonText}
-        onClick={() => toggleFavorite(data._id)}
-        isFavorite={isFavorite(data._id)}
-      />
+      <StyledActivityTitle>Options</StyledActivityTitle>
+      <OptionsWrapper>
+        <Button
+          text={buttonText}
+          onClick={() => toggleFavorite(data._id)}
+          purpose="favorite"
+          isFavorite={isFavorite(data._id)}
+        />
+        <Button
+          text={"Edit Activity"}
+          onClick={() => toggleFavorite(data._id)}
+          purpose="edit"
+        />
+        <Button
+          text={"Delete Activity"}
+          onClick={() => toggleFavorite(data._id)}
+          purpose="delete"
+        />
+      </OptionsWrapper>
     </Container>
   );
 }
