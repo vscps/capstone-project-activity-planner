@@ -39,7 +39,7 @@ export default function CategoryCheckboxGroup({
           <CheckboxLabel key={cat._id}>
             <input
               type="checkbox"
-              value={cat.name}
+              value={cat._id}
               onChange={handleCheckboxChange}
               {...register("categories", {
                 validate: (value) =>

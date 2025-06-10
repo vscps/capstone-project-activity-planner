@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import "./Categories";
+import "./Countries";
 
 const { Schema } = mongoose;
 
@@ -9,16 +10,21 @@ const activitySchema = new Schema({
     required: true,
   },
 
-  categories: {
-    type: [String],
+  categories: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
+  ],
+
+  country: {
+    type: Schema.Types.ObjectId,
+    ref: "Country",
     required: true,
   },
 
   area: {
-    type: String,
-    required: true,
-  },
-  country: {
     type: String,
     required: true,
   },
