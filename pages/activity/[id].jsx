@@ -13,7 +13,7 @@ export default function Page() {
 
   return (
     <>
-      <ActivityDetail data={data.data} />
+      <ActivityDetail data={data} />
     </>
   );
 }
