@@ -25,7 +25,11 @@ export default async function handler(req, res) {
       }
 
       const [activities, total] = await Promise.all([
-        Activity.find(filter).skip(skip).limit(pageSize),
+        Activity.find(filter)
+          .populate("categories")
+          .populate("country")
+          .skip(skip)
+          .limit(pageSize),
         Activity.countDocuments(filter),
       ]);
 
@@ -64,8 +68,6 @@ export default async function handler(req, res) {
 
   if (req.method === "POST") {
     try {
-      console.log("Incoming POST body:", req.body);
-
       const newActivity = await Activity.create(req.body);
       return res.status(201).json(newActivity);
     } catch (error) {
