@@ -11,7 +11,7 @@ const activitySchema = new Schema({
   },
 
   categories: {
-    type: [Schema.Types.ObjectId],
+    type: [Number],
     ref: "Category",
     required: true,
   },
