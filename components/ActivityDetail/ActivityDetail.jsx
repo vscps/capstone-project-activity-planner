@@ -16,6 +16,8 @@ import {
 import BackLink from "../BackLink/BackLink.jsx";
 import Button from "../Button/Button.jsx";
 import useFavorites from "@/hooks/useFavorites.js";
+import DeleteActivity from "../DeleteActivity/DeleteActivity.jsx";
+
 export default function ActivityDetail({ data }) {
   const [favorites, isFavorite, toggleFavorite] = useFavorites();
   const buttonText = isFavorite(data._id)
@@ -70,11 +72,7 @@ export default function ActivityDetail({ data }) {
           onClick={() => toggleFavorite(data._id)}
           purpose="edit"
         />
-        <Button
-          text={"Delete Activity"}
-          onClick={() => toggleFavorite(data._id)}
-          purpose="delete"
-        />
+        <DeleteActivity activityID={data._id} activityTitle={data.title} />
       </OptionsWrapper>
     </Container>
   );
