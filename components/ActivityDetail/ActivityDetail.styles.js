@@ -17,7 +17,8 @@ export const Card = styled.article`
 `;
 
 export const ImageArea = styled.div`
-  height: 300px;
+  height: 400px;
+  width: 100vw;
   overflow: hidden;
   position: relative;
 
