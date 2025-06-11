@@ -5,6 +5,7 @@ import InputField from "../FormControls/InputField/InputField";
 import TextareaField from "../FormControls/TextareaField/TextareaField";
 import CategoryCheckboxGroup from "../FormControls/CheckboxGroup/CheckboxGroup";
 import {
+  CancelButton,
   FormWrapper,
   PlaceholderImage,
   SubmitButton,
@@ -14,6 +15,8 @@ export default function ActivityForm({
   onSubmit,
   isLoading = false,
   successMessage = null,
+  isEditingState,
+  activityData,
 }) {
   const {
     register,
@@ -27,6 +30,8 @@ export default function ActivityForm({
     await onSubmit(data);
   };
 
+  const buttonText = isEditingState ? "Update activity" : "Create activity";
+  const buttonPurpose = isEditingState ? "confirm" : "submit";
   return (
     <FormWrapper onSubmit={handleSubmit(handleFormSubmit)}>
       <PlaceholderImage
@@ -89,10 +94,19 @@ export default function ActivityForm({
 
       <SubmitButton
         type="submit"
-        purpose={"submit"}
+        purpose={buttonPurpose}
         isLoading={isLoading}
-        text={"Create activity"}
+        text={buttonText}
       />
+      {isEditingState ? (
+        <CancelButton
+          purpose={"cancel"}
+          text={"Cancel editing"}
+          onClick={router.push(`../activity/${activityData._id}`)}
+        ></CancelButton>
+      ) : (
+        ""
+      )}
 
       {successMessage && <p>{successMessage}</p>}
     </FormWrapper>

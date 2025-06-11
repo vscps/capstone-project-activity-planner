@@ -16,8 +16,11 @@ import {
 import BackLink from "../BackLink/BackLink.jsx";
 import Button from "../Button/Button.jsx";
 import useFavorites from "@/hooks/useFavorites.js";
+import { useRouter } from "next/router.js";
+
 export default function ActivityDetail({ data }) {
   const [_, isFavorite, toggleFavorite] = useFavorites();
+  const router = useRouter();
 
   if (!data) {
     return <div>Loading...</div>;
@@ -26,6 +29,7 @@ export default function ActivityDetail({ data }) {
   const buttonText = isFavorite(data._id)
     ? "Remove from favorites"
     : "Add to favorites";
+
   return (
     <Container>
       <Card>
@@ -72,7 +76,7 @@ export default function ActivityDetail({ data }) {
         />
         <Button
           text={"Edit Activity"}
-          onClick={() => toggleFavorite(data._id)}
+          onClick={() => router.push(`${data._id}/edit`)}
           purpose="edit"
         />
         <Button
