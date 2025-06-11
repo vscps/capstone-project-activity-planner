@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
-
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import FormField from "../FormField/FormField";
 import InputField from "../FormControls/InputField/InputField";
 import TextareaField from "../FormControls/TextareaField/TextareaField";
@@ -17,6 +18,7 @@ export default function ActivityForm({
   successMessage = null,
   isEditingState,
   activityData,
+  categoriesData,
 }) {
   const {
     register,
@@ -26,10 +28,20 @@ export default function ActivityForm({
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    if (isEditingState && activityData) {
+      setValue("title", activityData.title || "");
+      setValue("description", activityData.description || "");
+      setValue("area", activityData.area || "");
+      setValue("country", activityData.country || "");
+      setValue("categories", activityData.categories || []);
+    }
+  }, [isEditingState, activityData, setValue]);
+
   const handleFormSubmit = async (data) => {
     await onSubmit(data);
   };
-
+  const router = useRouter();
   const buttonText = isEditingState ? "Update activity" : "Create activity";
   const buttonPurpose = isEditingState ? "confirm" : "submit";
   return (
@@ -89,6 +101,9 @@ export default function ActivityForm({
           setValue={setValue}
           getValues={getValues}
           errors={errors}
+          categoriesData={categoriesData}
+          isEditingState={isEditingState}
+          selectedCategoryIds={activityData?.categories || []}
         />
       </FormField>
 
@@ -102,7 +117,7 @@ export default function ActivityForm({
         <CancelButton
           purpose={"cancel"}
           text={"Cancel editing"}
-          onClick={router.push(`../activity/${activityData._id}`)}
+          onClick={() => router.push(`../${activityData._id}`)}
         ></CancelButton>
       ) : (
         ""
