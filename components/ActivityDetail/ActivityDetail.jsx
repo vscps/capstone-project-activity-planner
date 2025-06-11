@@ -17,7 +17,7 @@ import BackLink from "../BackLink/BackLink.jsx";
 import Button from "../Button/Button.jsx";
 import useFavorites from "@/hooks/useFavorites.js";
 export default function ActivityDetail({ data }) {
-  const [isFavorite, toggleFavorite] = useFavorites();
+  const [_, isFavorite, toggleFavorite] = useFavorites();
 
   if (!data) {
     return <div>Loading...</div>;
