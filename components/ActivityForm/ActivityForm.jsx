@@ -9,12 +9,10 @@ import {
   PlaceholderImage,
   SubmitButton,
 } from "./ActivityForm.styles";
-import Button from "../Button/Button";
 
 export default function ActivityForm({
   onSubmit,
   isLoading = false,
-  submitButtonText = "Submit",
   successMessage = null,
 }) {
   const {
@@ -22,7 +20,7 @@ export default function ActivityForm({
     handleSubmit,
     setValue,
     getValues,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm();
 
   const handleFormSubmit = async (data) => {

@@ -7,7 +7,6 @@ import {
   LoadingSpinner,
   RemoveFavoriteIcon,
   StyledButton,
-  // SubmitIcon,
 } from "./Button.styles";
 
 export default function Button({
@@ -33,7 +32,6 @@ export default function Button({
         Icon = <EditIcon />;
         break;
       case "submit":
-        // Icon = <SubmitIcon />;
         break;
       case "cancel":
         Icon = <CancelIcon />;

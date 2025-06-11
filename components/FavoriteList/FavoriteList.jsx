@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import useFavorites from "@/hooks/useFavorites";
 import useFetchAllPages from "@/hooks/useFetchAllPages";
 import Activity from "@/components/Activity/Activity";
@@ -8,7 +7,6 @@ import {
   LoadingMessage,
   EndMessage,
 } from "./FavoriteList.styles";
-import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 export default function FavoriteList() {
   const {
@@ -17,7 +15,7 @@ export default function FavoriteList() {
     isLoading,
   } = useFetchAllPages("api/activities");
 
-  const [favorites, isFavorite, toggleFavorite] = useFavorites();
+  const [favorites] = useFavorites();
 
   if (error) {
     return <ErrorMessage>Something went wrong</ErrorMessage>;
