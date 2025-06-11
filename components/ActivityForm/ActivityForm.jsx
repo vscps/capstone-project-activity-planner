@@ -13,7 +13,6 @@ import {
 export default function ActivityForm({
   onSubmit,
   isLoading = false,
-  submitButtonText = "Submit",
   successMessage = null,
 }) {
   const {
@@ -21,7 +20,7 @@ export default function ActivityForm({
     handleSubmit,
     setValue,
     getValues,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm();
 
   const handleFormSubmit = async (data) => {
@@ -88,9 +87,12 @@ export default function ActivityForm({
         />
       </FormField>
 
-      <SubmitButton type="submit" disabled={isSubmitting}>
-        {isSubmitting || isLoading ? "Processing..." : submitButtonText}
-      </SubmitButton>
+      <SubmitButton
+        type="submit"
+        purpose={"submit"}
+        isLoading={isLoading}
+        text={"Create activity"}
+      />
 
       {successMessage && <p>{successMessage}</p>}
     </FormWrapper>
