@@ -44,7 +44,7 @@ export default function ActivityList() {
   };
 
   const { data, error, size, setSize, isValidating } = useSWRInfinite(getKey, {
-    revalidateFirstPage: false,
+    revalidateFirstPage: true,
   });
 
   const { data: categoriesData } = useFetchAllPages("/api/categories");

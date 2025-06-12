@@ -22,7 +22,7 @@ export default function DeleteActivity({ activityID, activityTitle }) {
         setIsDeletionMode(false);
         setTimeout(() => {
           router.push("/");
-        }, 5000);
+        }, 3000);
       } else {
         console.error("Deletion failed");
       }
