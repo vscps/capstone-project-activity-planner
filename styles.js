@@ -38,4 +38,8 @@ export default createGlobalStyle`
     color: grey;
     text-decoration: none;
   }
+
+  nav > a, nav > a:visited, nav > a:hover, nav > a:active {
+    color: white;
+  }
 `;
