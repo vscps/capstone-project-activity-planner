@@ -44,7 +44,8 @@ export default function DeleteActivity({ activityID, activityTitle }) {
       {isDeletionMode && !deletionConfirmed && (
         <ConfirmationWrapper>
           <p>
-            Are you sure you want to delete <strong>{activityTitle}</strong>
+            Are you sure you want to delete the activity{" "}
+            <strong>{`"${activityTitle}"`}</strong>?
           </p>
           <Button
             text="Confirm"
