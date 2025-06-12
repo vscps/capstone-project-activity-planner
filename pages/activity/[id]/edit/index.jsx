@@ -76,8 +76,10 @@ export default function UpdatePage() {
               purpose="submit"
             />
             <p>
-              or{" "}
-              <Link href={`../${data._id}`}>go back to the details page.</Link>
+              or go back to the{" "}
+              <Link href={`../${data._id}`}>
+                {data.title} activity details page.
+              </Link>
             </p>
           </>
         )}
