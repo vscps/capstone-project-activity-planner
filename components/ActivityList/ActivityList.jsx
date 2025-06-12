@@ -62,7 +62,7 @@ export default function ActivityList() {
   };
 
   const { data, error, size, setSize, isValidating } = useSWRInfinite(getKey, {
-    revalidateFirstPage: false,
+    revalidateFirstPage: true,
   });
 
   const activities = data ? data.flatMap((page) => page.data) : [];
