@@ -32,4 +32,14 @@ export default createGlobalStyle`
     padding-bottom: 150px;
     color: grey;
   }
+
+  a, a:visited, a:hover, a:active {
+    font-weight: bold;
+    color: grey;
+    text-decoration: none;
+  }
+
+  nav > a, nav > a:visited, nav > a:hover, nav > a:active {
+    color: white;
+  }
 `;

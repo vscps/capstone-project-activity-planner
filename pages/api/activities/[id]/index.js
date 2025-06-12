@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import Activity from "@/data/models/Activities";
 import dbConnect from "@/lib/db/dbConnect";
-import Activity from "@/data/models/Activities";
 import Category from "@/data/models/Categories";
 
 export default async function handler(req, res) {
@@ -33,6 +32,18 @@ export default async function handler(req, res) {
       return res.status(200).json(enrichedActivity);
     } catch (error) {
       return res.status(500).json({ error: "Server error" });
+    }
+  }
+
+  if (req.method === "PUT") {
+    try {
+      console.log("Update request body:", req.body);
+      console.log("Update request ID:", id);
+      const updatedActivity = await Activity.findByIdAndUpdate(id, req.body);
+      return res.status(201).json(updatedActivity);
+    } catch (error) {
+      console.error("Updating activity failed:", error);
+      return res.status(400).json({ error: error.message });
     }
   }
 
