@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import Activity from "@/data/models/Activities";
 import dbConnect from "@/lib/db/dbConnect";
-import Activity from "@/data/models/Activities";
 import Category from "@/data/models/Categories";
 
 export default async function handler(req, res) {
