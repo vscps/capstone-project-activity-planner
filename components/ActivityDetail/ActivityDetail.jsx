@@ -19,7 +19,12 @@ import useFavorites from "@/hooks/useFavorites.js";
 import DeleteActivity from "../DeleteActivity/DeleteActivity.jsx";
 
 export default function ActivityDetail({ data }) {
-  const [favorites, isFavorite, toggleFavorite] = useFavorites();
+  const [_, isFavorite, toggleFavorite] = useFavorites();
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   const buttonText = isFavorite(data._id)
     ? "Remove from favorites"
     : "Add to favorites";
@@ -42,7 +47,7 @@ export default function ActivityDetail({ data }) {
         <TitleArea>
           <Heading>{data.title}</Heading>
           <CategoryArea>
-            {data.categories.map((item, index) => (
+            {data.categories?.map((item, index) => (
               <Category data={item} key={index}>
                 {item}
               </Category>

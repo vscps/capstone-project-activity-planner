@@ -1,6 +1,5 @@
 import {
   Wrapper,
-  FavoriteIcon,
   StyledLink,
   Card,
   ImageArea,
@@ -37,8 +36,8 @@ export default function Activity({ data }) {
             <Heading>{data.title}</Heading>
           </StyledLink>
           <CategoryArea>
-            {data.categories.map((item, index) => (
-              <Category data={item} key={index}>
+            {data.categories?.map((item, index) => (
+              <Category data={item} key={item._id || index}>
                 {item}
               </Category>
             ))}

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import "./Categories";
+import "./Countries";
 
 const { Schema } = mongoose;
 
@@ -10,15 +11,17 @@ const activitySchema = new Schema({
   },
 
   categories: {
-    type: [String],
+    type: [Number],
+    ref: "Category",
+    required: true,
+  },
+
+  country: {
+    type: String,
     required: true,
   },
 
   area: {
-    type: String,
-    required: true,
-  },
-  country: {
     type: String,
     required: true,
   },

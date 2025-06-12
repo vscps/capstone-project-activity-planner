@@ -7,7 +7,6 @@ import {
   LoadingSpinner,
   RemoveFavoriteIcon,
   StyledButton,
-  SubmitIcon,
 } from "./Button.styles";
 
 export default function Button({
@@ -16,6 +15,7 @@ export default function Button({
   purpose,
   isFavorite,
   isLoading,
+  ...props
 }) {
   let Icon = null;
   if (isLoading) {
@@ -32,7 +32,6 @@ export default function Button({
         Icon = <EditIcon />;
         break;
       case "submit":
-        Icon = <SubmitIcon />;
         break;
       case "cancel":
         Icon = <CancelIcon />;
@@ -52,6 +51,7 @@ export default function Button({
       $purpose={purpose}
       $isLoading={isLoading}
       disabled={isLoading}
+      {...props}
     >
       {Icon}
       {isLoading ? "Processing" : text}

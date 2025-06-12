@@ -25,8 +25,8 @@ export default function CategoryCheckboxGroup({
     const currentValues = getValues("categories") || [];
 
     const updatedValues = checked
-      ? [...currentValues, value]
-      : currentValues.filter((v) => v !== value);
+      ? [...currentValues, parseInt(value, 10)]
+      : currentValues.filter((v) => v !== parseInt(value, 10));
 
     setValue("categories", updatedValues, { shouldValidate: true });
   };
@@ -36,10 +36,10 @@ export default function CategoryCheckboxGroup({
       <fieldset name="categories">
         <legend>Please choose at least one</legend>
         {categories.map((cat) => (
-          <CheckboxLabel key={cat._id}>
+          <CheckboxLabel key={cat.id}>
             <input
               type="checkbox"
-              value={cat.name}
+              value={cat.id}
               onChange={handleCheckboxChange}
               {...register("categories", {
                 validate: (value) =>
