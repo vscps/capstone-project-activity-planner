@@ -4,7 +4,9 @@ import { useRouter } from "next/router";
 import ActivityForm from "@/components/ActivityForm/ActivityForm";
 import { useUpdateActivity } from "@/hooks/useActivityMutations";
 import useFetchAllPages from "@/hooks/useFetchAllPages";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
+import Button from "@/components/Button/Button";
+import Link from "next/link";
 
 export default function UpdatePage() {
   const router = useRouter();
@@ -30,7 +32,10 @@ export default function UpdatePage() {
   const handleSubmit = async (data) => {
     try {
       const updatedActivity = await updateActivity(id, data);
-      console.log(JSON.stringify(updatedActivity));
+
+      mutate(`/api/activities/${id}`);
+      setIsEditingState(false);
+
       setSuccessMessage(
         `Activity "${updatedActivity.title}" updated successfully!`
       );
@@ -38,26 +43,44 @@ export default function UpdatePage() {
       console.log("Failed to update activity.");
     }
   };
-  console.log(successMessage);
+
+  const titleMessage = isEditingState
+    ? `Edit activity ${data.title}`
+    : successMessage;
   return (
     <>
       <Head>
-        <title>Edit activity {`${data.title}`}</title>
+        <title>{titleMessage}</title>
       </Head>
       <main>
-        <h1>Edit activity {`"${data.title}"`}</h1>
-
-        <ActivityForm
-          onSubmit={handleSubmit}
-          isLoading={isLoading}
-          submitButtonText="Create Activity"
-          successMessage={successMessage}
-          isEditingState={isEditingState}
-          activityData={data}
-          categoriesData={categoriesData}
-          selectedCategoryIds={selectedCategoryIds}
-        />
-        {error && <>{`Unable to update activity`}</>}
+        <h1>{titleMessage}</h1>
+        {isEditingState ? (
+          <>
+            <ActivityForm
+              onSubmit={handleSubmit}
+              isLoading={isLoading}
+              submitButtonText="Update Activity"
+              successMessage={successMessage}
+              isEditingState={isEditingState}
+              activityData={data}
+              categoriesData={categoriesData}
+              selectedCategoryIds={selectedCategoryIds}
+            />
+            {error && <>{`Unable to update activity`}</>}
+          </>
+        ) : (
+          <>
+            <Button
+              text={"Continue editing"}
+              onClick={() => setIsEditingState(true)}
+              purpose="submit"
+            />
+            <p>
+              or{" "}
+              <Link href={`../${data._id}`}>go back to the details page.</Link>
+            </p>
+          </>
+        )}
       </main>
     </>
   );

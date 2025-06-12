@@ -20,6 +20,7 @@ export default function ActivityForm({
   activityData,
   categoriesData,
   selectedCategoryIds,
+  submitButtonText,
 }) {
   const {
     register,
@@ -38,12 +39,11 @@ export default function ActivityForm({
       setValue("categories", selectedCategoryIds || []);
     }
   }, [isEditingState, activityData, selectedCategoryIds, setValue]);
-  console.log(activityData);
+
   const handleFormSubmit = async (data) => {
     await onSubmit(data);
   };
   const router = useRouter();
-  const buttonText = isEditingState ? "Update activity" : "Create activity";
   const buttonPurpose = isEditingState ? "confirm" : "submit";
   return (
     <FormWrapper onSubmit={handleSubmit(handleFormSubmit)}>
@@ -116,7 +116,7 @@ export default function ActivityForm({
         type="submit"
         purpose={buttonPurpose}
         isLoading={isLoading}
-        text={buttonText}
+        text={submitButtonText}
       />
       {isEditingState ? (
         <CancelButton
@@ -128,7 +128,7 @@ export default function ActivityForm({
         ""
       )}
 
-      {successMessage && <p>{successMessage}</p>}
+      {!isEditingState && successMessage && <p>{successMessage}</p>}
     </FormWrapper>
   );
 }
