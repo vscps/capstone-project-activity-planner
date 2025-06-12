@@ -42,17 +42,17 @@ export function useUpdateActivity() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const updateActivity = async (data) => {
+  const updateActivity = async (id, data) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const res = await fetch("/api/activities", {
+      const res = await fetch(`/api/activities/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...data,
-          imageUrl: "/assets/images/placeholder.png",
+          imageUrl: data.imageUrl,
         }),
       });
 

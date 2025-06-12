@@ -53,12 +53,15 @@ export default function CategoryCheckboxGroup({
                   value={cat.id}
                   checked={isChecked}
                   onChange={handleCheckboxChange}
+                />
+                {cat.name}
+                <input
+                  type="hidden"
                   {...register("categories", {
                     validate: (value) =>
                       value.length > 0 || "Please select at least one category",
                   })}
                 />
-                {cat.name}
               </CheckboxLabel>
             );
           })}

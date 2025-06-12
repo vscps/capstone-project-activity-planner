@@ -19,6 +19,7 @@ export default function ActivityForm({
   isEditingState,
   activityData,
   categoriesData,
+  selectedCategoryIds,
 }) {
   const {
     register,
@@ -34,10 +35,10 @@ export default function ActivityForm({
       setValue("description", activityData.description || "");
       setValue("area", activityData.area || "");
       setValue("country", activityData.country || "");
-      setValue("categories", activityData.categories || []);
+      setValue("categories", selectedCategoryIds || []);
     }
-  }, [isEditingState, activityData, setValue]);
-
+  }, [isEditingState, activityData, selectedCategoryIds, setValue]);
+  console.log(activityData);
   const handleFormSubmit = async (data) => {
     await onSubmit(data);
   };
@@ -47,7 +48,11 @@ export default function ActivityForm({
   return (
     <FormWrapper onSubmit={handleSubmit(handleFormSubmit)}>
       <PlaceholderImage
-        src="/assets/images/placeholder.png"
+        src={
+          isEditingState
+            ? activityData.imageUrl
+            : "/assets/images/placeholder.png"
+        }
         width={500}
         height={300}
         alt="Activity Picture"
@@ -103,7 +108,7 @@ export default function ActivityForm({
           errors={errors}
           categoriesData={categoriesData}
           isEditingState={isEditingState}
-          selectedCategoryIds={activityData?.categories || []}
+          selectedCategoryIds={selectedCategoryIds}
         />
       </FormField>
 

@@ -43,7 +43,7 @@ export default function CreatePage() {
           successMessage={successMessage}
           isEditingState={isEditingState}
           activityData={data}
-          categories={categoriesData}
+          categoriesData={categoriesData}
         />
       </main>
     </>
