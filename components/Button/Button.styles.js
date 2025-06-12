@@ -13,56 +13,49 @@ export const FavoriteIcon = styled(MdBookmarkAdd)`
   font-size: 25px;
   z-index: 10;
   cursor: pointer;
-  filter: drop-shadow(2px 2px 2px #191919);
 `;
 
 export const RemoveFavoriteIcon = styled(MdBookmarkAdded)`
-  margin: 5px;
+  margin: 0 5px 0 0;
   color: #ffc200;
   font-size: 25px;
   z-index: 10;
   cursor: pointer;
-  filter: drop-shadow(2px 2px 2px #191919);
 `;
 
 export const DeleteIcon = styled(MdDelete)`
-  margin: 5px;
+  margin: 0 5px 0 0;
   color: white;
   font-size: 25px;
   cursor: pointer;
-  filter: drop-shadow(2px 2px 2px #191919);
 `;
 
 export const EditIcon = styled(MdEdit)`
-  margin: 5px;
+  margin: 0 5px 0 0;
   color: white;
   font-size: 25px;
   cursor: pointer;
-  filter: drop-shadow(2px 2px 2px #191919);
 `;
 
 export const SubmitIcon = styled(MdArrowForward)`
-  margin: 5px;
+  margin: 0 5px 0 0;
   color: white;
   font-size: 25px;
   cursor: pointer;
-  filter: drop-shadow(2px 2px 2px #191919);
 `;
 
 export const CancelIcon = styled(MdCancel)`
-  margin: 5px;
+  margin: 0 5px 0 0;
   color: white;
   font-size: 25px;
   cursor: pointer;
-  filter: drop-shadow(2px 2px 2px #191919);
 `;
 
 export const ConfirmIcon = styled(GiConfirmed)`
-  margin: 5px;
+  margin: 0 5px 0 0;
   color: white;
   font-size: 25px;
   cursor: pointer;
-  filter: drop-shadow(2px 2px 2px #191919);
 `;
 
 export const StyledButton = styled.button`
@@ -83,7 +76,7 @@ export const StyledButton = styled.button`
       ? "#83b36c"
       : ""};
   border: 1px solid transparent;
-  border-radius: 0.25rem;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
   color: #fff;
@@ -96,7 +89,7 @@ export const StyledButton = styled.button`
   justify-content: center;
   line-height: 1.25;
   margin: 15px 15px 15px 0;
-  min-height: 3rem;
+  height: 50px;
   padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
   position: relative;
   text-decoration: none;
