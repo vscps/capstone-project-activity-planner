@@ -45,7 +45,7 @@ export default function UpdatePage() {
   };
 
   const titleMessage = isEditingState
-    ? `Edit activity ${data.title}`
+    ? `Edit activity "${data.title}"`
     : successMessage;
   return (
     <>
