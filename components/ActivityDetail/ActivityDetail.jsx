@@ -75,11 +75,13 @@ export default function ActivityDetail({ data }) {
           onClick={() => toggleFavorite(data._id)}
           purpose="favorite"
           isFavorite={isFavorite(data._id)}
+          isLink={false}
         />
         <Button
           text={"Edit Activity"}
-          onClick={() => router.push(`${data._id}/edit`)}
           purpose="edit"
+          isLink={true}
+          linkUrl={`${data._id}/edit`}
         />
       </OptionsWrapper>
       <DeleteActivity activityID={data._id} activityTitle={data.title} />
