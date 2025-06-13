@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   CheckboxGroupWrapper,
   CheckboxLabel,
@@ -11,22 +10,7 @@ export default function CategoryCheckboxGroup({
   getValues,
   errors,
   categoriesData,
-  isEditingState,
-  selectedCategoryIds,
 }) {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    setCategories(categoriesData);
-  }, [categoriesData]);
-
-  // Prefill selected categories only in edit mode
-  useEffect(() => {
-    if (isEditingState && selectedCategoryIds.length > 0) {
-      setValue("categories", selectedCategoryIds, { shouldValidate: true });
-    }
-  }, [isEditingState, selectedCategoryIds, setValue]);
-
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     const currentValues = getValues("categories") || [];
@@ -43,7 +27,7 @@ export default function CategoryCheckboxGroup({
       <fieldset name="categories">
         <legend>Please choose at least one</legend>
         {Array.isArray(categoriesData) &&
-          categories.map((cat) => {
+          categoriesData.map((cat) => {
             const selected = getValues("categories") || [];
             const isChecked = selected.includes(cat.id);
             return (
