@@ -23,3 +23,7 @@ export const PlaceholderImage = styled(Image)`
 export const SubmitButton = styled(Button)`
   align-self: center;
 `;
+
+export const CancelButton = styled(Button)`
+  align-self: center;
+`;

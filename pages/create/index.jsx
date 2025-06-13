@@ -3,11 +3,14 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import ActivityForm from "@/components/ActivityForm/ActivityForm";
 import { useCreateActivity } from "@/hooks/useActivityMutations";
+import useFetchAllPages from "@/hooks/useFetchAllPages";
 
 export default function CreatePage() {
   const router = useRouter();
   const { createActivity, isLoading, error } = useCreateActivity();
   const [successMessage, setSuccessMessage] = useState("");
+
+  const { data: categoriesData } = useFetchAllPages("/api/categories");
 
   const handleSubmit = async (data) => {
     try {
@@ -38,6 +41,7 @@ export default function CreatePage() {
           isLoading={isLoading}
           submitButtonText="Create Activity"
           successMessage={successMessage}
+          categoriesData={categoriesData}
         />
       </main>
     </>
