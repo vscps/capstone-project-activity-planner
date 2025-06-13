@@ -1,17 +1,27 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+
 import Button from "../Button/Button.jsx";
 import {
+  ButtonWrapper,
   ConfirmationWrapper,
   SuccessMessage,
 } from "./DeleteActivity.styles.js";
 
 export default function DeleteActivity({ activityID, activityTitle }) {
-  const [isDeletionMode, setIsDeletionMode] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const [deletionConfirmed, setDeletionConfirmed] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const router = useRouter();
 
-  async function handleDeleteActivity() {
+  const handleTransitionEnd = () => {
+    if (isClosing) {
+      setShowConfirmation(false);
+      setIsClosing(false);
+    }
+  };
+
+  const handleDeleteActivity = async () => {
     try {
       const response = await fetch(`/api/activities/${activityID}`, {
         method: "DELETE",
@@ -19,7 +29,8 @@ export default function DeleteActivity({ activityID, activityTitle }) {
 
       if (response.ok) {
         setDeletionConfirmed(true);
-        setIsDeletionMode(false);
+        setShowConfirmation(false);
+
         setTimeout(() => {
           router.push("/");
         }, 3000);
@@ -29,40 +40,46 @@ export default function DeleteActivity({ activityID, activityTitle }) {
     } catch (error) {
       console.error("Error deleting activity:", error);
     }
-  }
+  };
+
+  const startDeletion = () => {
+    setShowConfirmation(true);
+  };
+
+  const cancelDeletion = () => {
+    setIsClosing(true);
+  };
 
   return (
     <div>
-      {!isDeletionMode && !deletionConfirmed && (
-        <Button
-          text="Delete"
-          onClick={() => setIsDeletionMode(true)}
-          purpose="delete"
-        />
+      {!showConfirmation && !deletionConfirmed && (
+        <Button text="Delete" onClick={startDeletion} purpose="delete" />
       )}
 
-      {isDeletionMode && !deletionConfirmed && (
-        <ConfirmationWrapper>
+      {showConfirmation && !deletionConfirmed && (
+        <ConfirmationWrapper
+          $isDisappearing={isClosing}
+          onTransitionEnd={handleTransitionEnd}
+        >
           <p>
-            Are you sure you want to delete <strong>{activityTitle}</strong>
+            Are you sure you would like to delete the activity{" "}
+            <strong>{`"${activityTitle}"`}</strong>?
           </p>
-          <Button
-            text="Confirm"
-            onClick={handleDeleteActivity}
-            purpose="confirm"
-          />{" "}
-          <Button
-            text="Cancel"
-            onClick={() => setIsDeletionMode(false)}
-            purpose="cancel"
-          />
+          <ButtonWrapper>
+            <Button
+              text="Yes"
+              onClick={handleDeleteActivity}
+              purpose="confirm"
+            />
+            <Button text="No" onClick={cancelDeletion} purpose="cancel" />
+          </ButtonWrapper>
         </ConfirmationWrapper>
       )}
 
       {deletionConfirmed && (
         <SuccessMessage>
           Activity successfully deleted. Redirecting to the list of all
-          activities.
+          activities in three seconds.
         </SuccessMessage>
       )}
     </div>

@@ -115,12 +115,14 @@ export default function ActivityForm({
         purpose={buttonPurpose}
         isLoading={isLoading}
         text={submitButtonText}
+        isLink={false}
       />
       {isEditingState ? (
         <CancelButton
           purpose={"cancel"}
           text={"Cancel editing"}
-          onClick={() => router.push(`../${activityData._id}`)}
+          isLink={true}
+          linkUrl={`../${activityData._id}`}
         ></CancelButton>
       ) : (
         ""

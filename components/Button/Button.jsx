@@ -7,6 +7,7 @@ import {
   LoadingSpinner,
   RemoveFavoriteIcon,
   StyledButton,
+  StyledButtonLink,
 } from "./Button.styles";
 
 export default function Button({
@@ -15,6 +16,8 @@ export default function Button({
   purpose,
   isFavorite,
   isLoading,
+  isLink,
+  linkUrl,
   ...props
 }) {
   let Icon = null;
@@ -45,16 +48,32 @@ export default function Button({
   }
 
   return (
-    <StyledButton
-      role="button"
-      onClick={onClick}
-      $purpose={purpose}
-      $isLoading={isLoading}
-      disabled={isLoading}
-      {...props}
-    >
-      {Icon}
-      {isLoading ? "Processing" : text}
-    </StyledButton>
+    <>
+      {isLink ? (
+        <StyledButtonLink
+          href={linkUrl}
+          role="button"
+          $purpose={purpose}
+          $isLoading={isLoading}
+          disabled={isLoading}
+          {...props}
+        >
+          {Icon}
+          {isLoading ? "Processing" : text}
+        </StyledButtonLink>
+      ) : (
+        <StyledButton
+          role="button"
+          onClick={onClick}
+          $purpose={purpose}
+          $isLoading={isLoading}
+          disabled={isLoading}
+          {...props}
+        >
+          {Icon}
+          {isLoading ? "Processing" : text}
+        </StyledButton>
+      )}
+    </>
   );
 }
