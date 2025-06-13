@@ -63,7 +63,7 @@ export default function UpdatePage() {
               isLoading={isLoading}
               submitButtonText="Update Activity"
               successMessage={successMessage}
-              isEditingState={isEditingState}
+              isEditingState={true}
               activityData={data}
               categoriesData={categoriesData}
               selectedCategoryIds={selectedCategoryIds}
