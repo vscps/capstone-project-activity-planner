@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import useFetchAllPages from "@/hooks/useFetchAllPages";
 import {
   CheckboxGroupWrapper,
   CheckboxLabel,
@@ -11,14 +10,22 @@ export default function CategoryCheckboxGroup({
   setValue,
   getValues,
   errors,
+  categoriesData,
+  isEditingState,
+  selectedCategoryIds,
 }) {
   const [categories, setCategories] = useState([]);
-
-  const { data: categoriesData } = useFetchAllPages("/api/categories");
 
   useEffect(() => {
     setCategories(categoriesData);
   }, [categoriesData]);
+
+  // Prefill selected categories only in edit mode
+  useEffect(() => {
+    if (isEditingState && selectedCategoryIds.length > 0) {
+      setValue("categories", selectedCategoryIds, { shouldValidate: true });
+    }
+  }, [isEditingState, selectedCategoryIds, setValue]);
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -35,20 +42,29 @@ export default function CategoryCheckboxGroup({
     <CheckboxGroupWrapper>
       <fieldset name="categories">
         <legend>Please choose at least one</legend>
-        {categories.map((cat) => (
-          <CheckboxLabel key={cat.id}>
-            <input
-              type="checkbox"
-              value={cat.id}
-              onChange={handleCheckboxChange}
-              {...register("categories", {
-                validate: (value) =>
-                  value.length > 0 || "Please select at least one category",
-              })}
-            />
-            {cat.name}
-          </CheckboxLabel>
-        ))}
+        {Array.isArray(categoriesData) &&
+          categories.map((cat) => {
+            const selected = getValues("categories") || [];
+            const isChecked = selected.includes(cat.id);
+            return (
+              <CheckboxLabel key={cat.id}>
+                <input
+                  type="checkbox"
+                  value={cat.id}
+                  checked={isChecked}
+                  onChange={handleCheckboxChange}
+                />
+                {cat.name}
+                <input
+                  type="hidden"
+                  {...register("categories", {
+                    validate: (value) =>
+                      value.length > 0 || "Please select at least one category",
+                  })}
+                />
+              </CheckboxLabel>
+            );
+          })}
       </fieldset>
       {errors.categories && <ErrorText>{errors.categories.message}</ErrorText>}
     </CheckboxGroupWrapper>

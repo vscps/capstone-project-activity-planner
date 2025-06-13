@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
-
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import FormField from "../FormField/FormField";
 import InputField from "../FormControls/InputField/InputField";
 import TextareaField from "../FormControls/TextareaField/TextareaField";
@@ -17,6 +18,9 @@ export default function ActivityForm({
   successMessage = null,
   isEditingState,
   activityData,
+  categoriesData,
+  selectedCategoryIds,
+  submitButtonText,
 }) {
   const {
     register,
@@ -26,16 +30,29 @@ export default function ActivityForm({
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    if (isEditingState && activityData) {
+      setValue("title", activityData.title || "");
+      setValue("description", activityData.description || "");
+      setValue("area", activityData.area || "");
+      setValue("country", activityData.country || "");
+      setValue("categories", selectedCategoryIds || []);
+    }
+  }, [isEditingState, activityData, selectedCategoryIds, setValue]);
+
   const handleFormSubmit = async (data) => {
     await onSubmit(data);
   };
-
-  const buttonText = isEditingState ? "Update activity" : "Create activity";
+  const router = useRouter();
   const buttonPurpose = isEditingState ? "confirm" : "submit";
   return (
     <FormWrapper onSubmit={handleSubmit(handleFormSubmit)}>
       <PlaceholderImage
-        src="/assets/images/placeholder.png"
+        src={
+          isEditingState
+            ? activityData.imageUrl
+            : "/assets/images/placeholder.png"
+        }
         width={500}
         height={300}
         alt="Activity Picture"
@@ -89,6 +106,9 @@ export default function ActivityForm({
           setValue={setValue}
           getValues={getValues}
           errors={errors}
+          categoriesData={categoriesData}
+          isEditingState={isEditingState}
+          selectedCategoryIds={selectedCategoryIds}
         />
       </FormField>
 
@@ -96,19 +116,19 @@ export default function ActivityForm({
         type="submit"
         purpose={buttonPurpose}
         isLoading={isLoading}
-        text={buttonText}
+        text={submitButtonText}
       />
       {isEditingState ? (
         <CancelButton
           purpose={"cancel"}
           text={"Cancel editing"}
-          onClick={router.push(`../activity/${activityData._id}`)}
+          onClick={() => router.push(`../${activityData._id}`)}
         ></CancelButton>
       ) : (
         ""
       )}
 
-      {successMessage && <p>{successMessage}</p>}
+      {!isEditingState && successMessage && <p>{successMessage}</p>}
     </FormWrapper>
   );
 }

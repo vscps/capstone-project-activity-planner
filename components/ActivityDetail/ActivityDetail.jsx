@@ -16,6 +16,8 @@ import {
 import BackLink from "../BackLink/BackLink.jsx";
 import Button from "../Button/Button.jsx";
 import useFavorites from "@/hooks/useFavorites.js";
+import DeleteActivity from "../DeleteActivity/DeleteActivity.jsx";
+
 import { useRouter } from "next/router.js";
 
 export default function ActivityDetail({ data }) {
@@ -79,11 +81,7 @@ export default function ActivityDetail({ data }) {
           onClick={() => router.push(`${data._id}/edit`)}
           purpose="edit"
         />
-        <Button
-          text={"Delete Activity"}
-          onClick={() => toggleFavorite(data._id)}
-          purpose="delete"
-        />
+        <DeleteActivity activityID={data._id} activityTitle={data.title} />
       </OptionsWrapper>
     </Container>
   );

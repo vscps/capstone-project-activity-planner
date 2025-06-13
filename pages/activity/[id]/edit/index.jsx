@@ -2,45 +2,87 @@ import Head from "next/head";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import ActivityForm from "@/components/ActivityForm/ActivityForm";
-import { useCreateActivity } from "@/hooks/useActivityMutations";
+import { useUpdateActivity } from "@/hooks/useActivityMutations";
+import useFetchAllPages from "@/hooks/useFetchAllPages";
+import useSWR, { mutate } from "swr";
+import Button from "@/components/Button/Button";
+import Link from "next/link";
 
-export default function CreatePage() {
+export default function UpdatePage() {
   const router = useRouter();
-  const { createActivity, isLoading, error } = useCreateActivity();
+  const { id } = router.query;
+  const { data, dataError } = useSWR(id ? `/api/activities/${id}` : null);
+
+  const { updateActivity, isLoading, error } = useUpdateActivity(id);
   const [successMessage, setSuccessMessage] = useState("");
   const [isEditingState, setIsEditingState] = useState(true);
+  const { data: categoriesData } = useFetchAllPages("/api/categories");
+
+  if (dataError) return <div>Unable to load activitiy data</div>;
+  if (!data) return <div>Loading...</div>;
+
+  // Map category names from activity data to the corresponding IDs from the categoriesData collection
+  const selectedCategoryIds = data.categories
+    .map((catName) => {
+      const category = categoriesData.find((c) => c.name === catName);
+      return category ? category.id : null;
+    })
+    .filter((id) => id !== null);
 
   const handleSubmit = async (data) => {
     try {
-      const newActivity = await createActivity(data);
+      const updatedActivity = await updateActivity(id, data);
+
+      mutate(`/api/activities/${id}`);
+      setIsEditingState(false);
 
       setSuccessMessage(
-        `Activity "${newActivity.title}" created successfully!`
+        `Activity "${updatedActivity.title}" updated successfully!`
       );
-
-      setTimeout(() => {
-        router.push(`/activity/${newActivity._id}`);
-      }, 2500);
     } catch (err) {
-      console.log("Failed to create activity.");
+      console.log("Failed to update activity.");
     }
   };
 
+  const titleMessage = isEditingState
+    ? `Edit activity "${data.title}"`
+    : successMessage;
   return (
     <>
       <Head>
-        <title>create</title>
+        <title>{titleMessage}</title>
       </Head>
       <main>
-        <h1>Update activity</h1>
-        {error && <>{`Something went wrong`}</>}
-        <ActivityForm
-          onSubmit={handleSubmit}
-          isLoading={isLoading}
-          submitButtonText="Create Activity"
-          successMessage={successMessage}
-          isEditingState={isEditingState}
-        />
+        <h1>{titleMessage}</h1>
+        {isEditingState ? (
+          <>
+            <ActivityForm
+              onSubmit={handleSubmit}
+              isLoading={isLoading}
+              submitButtonText="Update Activity"
+              successMessage={successMessage}
+              isEditingState={isEditingState}
+              activityData={data}
+              categoriesData={categoriesData}
+              selectedCategoryIds={selectedCategoryIds}
+            />
+            {error && <>{`Unable to update activity`}</>}
+          </>
+        ) : (
+          <>
+            <Button
+              text={"Continue editing"}
+              onClick={() => setIsEditingState(true)}
+              purpose="submit"
+            />
+            <p>
+              or go back to the{" "}
+              <Link href={`../${data._id}`}>
+                {data.title} activity details page.
+              </Link>
+            </p>
+          </>
+        )}
       </main>
     </>
   );
