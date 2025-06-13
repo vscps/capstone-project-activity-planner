@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+
 import FormField from "../FormField/FormField";
 import InputField from "../FormControls/InputField/InputField";
 import TextareaField from "../FormControls/TextareaField/TextareaField";
@@ -28,17 +28,15 @@ export default function ActivityForm({
     setValue,
     getValues,
     formState: { errors },
-  } = useForm();
-
-  useEffect(() => {
-    if (isEditingState && activityData) {
-      setValue("title", activityData.title || "");
-      setValue("description", activityData.description || "");
-      setValue("area", activityData.area || "");
-      setValue("country", activityData.country || "");
-      setValue("categories", selectedCategoryIds || []);
-    }
-  }, [isEditingState, activityData, selectedCategoryIds, setValue]);
+  } = useForm({
+    defaultValues: {
+      title: isEditingState ? activityData?.title || "" : "",
+      description: isEditingState ? activityData?.description || "" : "",
+      area: isEditingState ? activityData?.area || "" : "",
+      country: isEditingState ? activityData?.country || "" : "",
+      categories: isEditingState ? selectedCategoryIds || [] : [],
+    },
+  });
 
   const handleFormSubmit = async (data) => {
     await onSubmit(data);
