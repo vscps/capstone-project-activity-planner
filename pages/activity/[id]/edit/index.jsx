@@ -24,7 +24,9 @@ export default function UpdatePage() {
   // Map category names from activity data to the corresponding IDs from the categoriesData collection
   const selectedCategoryIds = data.categories
     .map((catName) => {
-      const category = categoriesData.find((c) => c.name === catName);
+      const category = categoriesData.find(
+        (catData) => catData.name === catName
+      );
       return category ? category.id : null;
     })
     .filter((id) => id !== null);
