@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
+
 import Button from "../Button/Button.jsx";
 import {
   ButtonWrapper,
@@ -8,33 +9,19 @@ import {
 } from "./DeleteActivity.styles.js";
 
 export default function DeleteActivity({ activityID, activityTitle }) {
-  const [isDeletionMode, setIsDeletionMode] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const [deletionConfirmed, setDeletionConfirmed] = useState(false);
-  const [isDisappearing, setIsDisappearing] = useState(false);
-  const [shouldRenderConfirmation, setShouldRenderConfirmation] =
-    useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const router = useRouter();
 
-  // Some delays through timeouts had to be added to be able to play a slideUp animation for the confirmation message.
-  // Without delays, React unmounts the component too early and the animation has no time to play.
-  // Also, a shouldRenderConfirmation state needed to be introduced to delay unmounting of the message
-  // until this state has been set to true.
-
-  useEffect(() => {
-    if (isDisappearing) {
-      const timeout = setTimeout(() => {
-        setShouldRenderConfirmation(false);
-        setIsDeletionMode(false);
-        setIsDisappearing(false);
-      }, 300);
-
-      return () => clearTimeout(timeout);
+  const handleTransitionEnd = () => {
+    if (isClosing) {
+      setShowConfirmation(false);
+      setIsClosing(false);
     }
-  }, [isDisappearing]);
+  };
 
-  async function handleDeleteActivity() {
-    setIsDisappearing(true);
-
+  const handleDeleteActivity = async () => {
     try {
       const response = await fetch(`/api/activities/${activityID}`, {
         method: "DELETE",
@@ -42,52 +29,49 @@ export default function DeleteActivity({ activityID, activityTitle }) {
 
       if (response.ok) {
         setDeletionConfirmed(true);
+        setShowConfirmation(false);
+
         setTimeout(() => {
           router.push("/");
         }, 3000);
       } else {
         console.error("Deletion failed");
-        setIsDisappearing(false);
       }
     } catch (error) {
       console.error("Error deleting activity:", error);
-      setIsDisappearing(false);
     }
-  }
+  };
+
+  const startDeletion = () => {
+    setShowConfirmation(true);
+  };
+
+  const cancelDeletion = () => {
+    setIsClosing(true);
+  };
 
   return (
     <div>
-      {!isDeletionMode && !deletionConfirmed && (
-        <Button
-          text="Delete"
-          onClick={() => {
-            setIsDeletionMode(true);
-            setShouldRenderConfirmation(true);
-          }}
-          purpose="delete"
-        />
+      {!showConfirmation && !deletionConfirmed && (
+        <Button text="Delete" onClick={startDeletion} purpose="delete" />
       )}
 
-      {shouldRenderConfirmation && (
-        <ConfirmationWrapper isDisappearing={isDisappearing}>
+      {showConfirmation && !deletionConfirmed && (
+        <ConfirmationWrapper
+          $isDisappearing={isClosing}
+          onTransitionEnd={handleTransitionEnd}
+        >
           <p>
             Are you sure you would like to delete the activity{" "}
             <strong>{`"${activityTitle}"`}</strong>?
           </p>
           <ButtonWrapper>
-            {" "}
             <Button
               text="Yes"
               onClick={handleDeleteActivity}
               purpose="confirm"
             />
-            <Button
-              text="No"
-              onClick={() => {
-                setIsDisappearing(true); // play slide-up on cancel too
-              }}
-              purpose="cancel"
-            />
+            <Button text="No" onClick={cancelDeletion} purpose="cancel" />
           </ButtonWrapper>
         </ConfirmationWrapper>
       )}

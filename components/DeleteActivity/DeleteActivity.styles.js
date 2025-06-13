@@ -12,8 +12,8 @@ export const ConfirmationWrapper = styled.div`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   max-height: 450px;
   overflow-y: auto;
-  animation: ${({ isDisappearing }) =>
-    isDisappearing
+  animation: ${({ $isDisappearing }) =>
+    $isDisappearing
       ? "slideUp 0.3s ease-in-out forwards"
       : "slideDown 0.3s ease-in-out"};
 
