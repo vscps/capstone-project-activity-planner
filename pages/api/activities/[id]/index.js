@@ -37,8 +37,6 @@ export default async function handler(req, res) {
 
   if (req.method === "PUT") {
     try {
-      console.log("Update request body:", req.body);
-      console.log("Update request ID:", id);
       const updatedActivity = await Activity.findByIdAndUpdate(id, req.body);
       return res.status(201).json(updatedActivity);
     } catch (error) {
