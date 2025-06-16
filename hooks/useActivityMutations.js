@@ -1,4 +1,13 @@
 import { useState } from "react";
+import { mutate } from "swr";
+
+const invalidateActivitiesCache = async () => {
+  await mutate(
+    (key) => typeof key === "string" && key.includes("/api/activities"),
+    undefined,
+    { revalidate: false }
+  );
+};
 
 export function useCreateActivity() {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +34,8 @@ export function useCreateActivity() {
       }
 
       const newActivity = await response.json();
+
+      await invalidateActivitiesCache();
 
       return newActivity;
     } catch (error) {
@@ -64,6 +75,7 @@ export function useUpdateActivity() {
 
       const updatedActivity = await response.json();
 
+      await invalidateActivitiesCache();
       return updatedActivity;
     } catch (error) {
       setError(error);
