@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
 
 import FormField from "../FormField/FormField";
 import InputField from "../FormControls/InputField/InputField";
@@ -37,7 +36,6 @@ export default function ActivityForm({
   const handleFormSubmit = async (data) => {
     await onSubmit(data);
   };
-  const router = useRouter();
   const buttonPurpose = isEditingState ? "confirm" : "submit";
   return (
     <FormWrapper onSubmit={handleSubmit(handleFormSubmit)}>
