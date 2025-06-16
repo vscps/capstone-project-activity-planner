@@ -5,12 +5,8 @@ import FormField from "../FormField/FormField";
 import InputField from "../FormControls/InputField/InputField";
 import TextareaField from "../FormControls/TextareaField/TextareaField";
 import CategoryCheckboxGroup from "../FormControls/CheckboxGroup/CheckboxGroup";
-import {
-  CancelButton,
-  FormWrapper,
-  PlaceholderImage,
-  SubmitButton,
-} from "./ActivityForm.styles";
+import Button from "../Button/Button";
+import { FormWrapper, PlaceholderImage } from "./ActivityForm.styles";
 
 export default function ActivityForm({
   onSubmit,
@@ -110,20 +106,20 @@ export default function ActivityForm({
         />
       </FormField>
 
-      <SubmitButton
+      <Button
         type="submit"
         purpose={buttonPurpose}
         isLoading={isLoading}
         text={submitButtonText}
       />
-      {isEditingState ? (
-        <CancelButton
-          purpose={"cancel"}
-          text={"Cancel editing"}
-          onClick={() => router.push(`../${activityData._id}`)}
-        ></CancelButton>
-      ) : (
-        ""
+
+      {isEditingState && (
+        <Button
+          purpose="cancel"
+          text="Cancel editing"
+          as="a"
+          href={`../${activityData._id}`}
+        />
       )}
 
       {!isEditingState && successMessage && <p>{successMessage}</p>}

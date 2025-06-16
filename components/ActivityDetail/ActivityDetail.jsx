@@ -78,11 +78,12 @@ export default function ActivityDetail({ data }) {
         />
         <Button
           text={"Edit Activity"}
-          onClick={() => router.push(`${data._id}/edit`)}
           purpose="edit"
+          as="a"
+          href={`${data._id}/edit`}
         />
-        <DeleteActivity activityID={data._id} activityTitle={data.title} />
       </OptionsWrapper>
+      <DeleteActivity activityID={data._id} activityTitle={data.title} />
     </Container>
   );
 }
