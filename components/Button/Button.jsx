@@ -16,8 +16,8 @@ export default function Button({
   purpose,
   isFavorite,
   isLoading,
-  isLink,
-  linkUrl,
+  as,
+  href,
   ...props
 }) {
   let Icon = null;
@@ -47,33 +47,32 @@ export default function Button({
     }
   }
 
+  if (as === "a") {
+    return (
+      <StyledButtonLink
+        href={href}
+        role="button"
+        $purpose={purpose}
+        $isLoading={isLoading}
+        {...props}
+      >
+        {Icon}
+        {isLoading ? "Processing" : text}
+      </StyledButtonLink>
+    );
+  }
+
   return (
-    <>
-      {isLink ? (
-        <StyledButtonLink
-          href={linkUrl}
-          role="button"
-          $purpose={purpose}
-          $isLoading={isLoading}
-          disabled={isLoading}
-          {...props}
-        >
-          {Icon}
-          {isLoading ? "Processing" : text}
-        </StyledButtonLink>
-      ) : (
-        <StyledButton
-          role="button"
-          onClick={onClick}
-          $purpose={purpose}
-          $isLoading={isLoading}
-          disabled={isLoading}
-          {...props}
-        >
-          {Icon}
-          {isLoading ? "Processing" : text}
-        </StyledButton>
-      )}
-    </>
+    <StyledButton
+      onClick={onClick}
+      role="button"
+      $purpose={purpose}
+      $isLoading={isLoading}
+      disabled={isLoading}
+      {...props}
+    >
+      {Icon}
+      {isLoading ? "Processing" : text}
+    </StyledButton>
   );
 }
