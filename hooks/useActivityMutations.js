@@ -87,3 +87,36 @@ export function useUpdateActivity() {
 
   return { updateActivity, isLoading, error };
 }
+
+export function useDeleteActivity() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const deleteActivity = async (id) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`/api/activities/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        const message = errorData?.message || "Failed to delete activity.";
+        throw new Error(message);
+      }
+
+      await invalidateActivitiesCache();
+
+      return true;
+    } catch (error) {
+      setError(error);
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return { deleteActivity, isLoading, error };
+}
