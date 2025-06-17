@@ -9,6 +9,7 @@ import {
   LoadingMessage,
   EndMessage,
 } from "./ActivityList.styles";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const PAGE_LIMIT = 5;
 
@@ -118,8 +119,7 @@ export default function ActivityList() {
   }
 
   if (isLoading) {
-    // Todo: Create loading spinner component or skeleton
-    return <LoadingMessage>Loading activities...</LoadingMessage>;
+    return <LoadingSpinner variant="page" />;
   }
 
   return (
