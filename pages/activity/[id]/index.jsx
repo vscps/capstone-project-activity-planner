@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import ActivityDetail from "@/components/ActivityDetail/ActivityDetail";
 import Head from "next/head";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
 export default function Page() {
   const router = useRouter();
@@ -10,7 +11,7 @@ export default function Page() {
   const { data, error } = useSWR(id ? `/api/activities/${id}` : null);
 
   if (error) return <div>Something went wrong</div>;
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <LoadingSpinner variant="page" />;
 
   return (
     <>
