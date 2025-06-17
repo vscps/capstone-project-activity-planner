@@ -16,13 +16,10 @@ import {
 import BackLink from "../BackLink/BackLink.jsx";
 import Button from "../Button/Button.jsx";
 import useFavorites from "@/hooks/useFavorites.js";
-import DeleteActivity from "../DeleteActivity/DeleteActivity.jsx";
-
-import { useRouter } from "next/router.js";
+import ActivityDelete from "../ActivityDelete/ActivityDelete.jsx";
 
 export default function ActivityDetail({ data }) {
   const [_, isFavorite, toggleFavorite] = useFavorites();
-  const router = useRouter();
 
   if (!data) {
     return <div>Loading...</div>;
@@ -83,7 +80,7 @@ export default function ActivityDetail({ data }) {
           href={`${data._id}/edit`}
         />
       </OptionsWrapper>
-      <DeleteActivity activityID={data._id} activityTitle={data.title} />
+      <ActivityDelete activityID={data._id} activityTitle={data.title} />
     </Container>
   );
 }

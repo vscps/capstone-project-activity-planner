@@ -50,7 +50,6 @@ export default function CategoryCheckboxGroup({
             );
           })}
       </fieldset>
-      {errors.categories && <ErrorText>{errors.categories.message}</ErrorText>}
     </CheckboxGroupWrapper>
   );
 }
