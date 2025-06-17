@@ -14,15 +14,37 @@ import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 export default function UpdatePage() {
   const router = useRouter();
   const { id } = router.query;
-  const { data, dataError } = useSWR(id ? `/api/activities/${id}` : null);
+  const {
+    data,
+    error: dataError,
+    isValidating: isValidatingActivity,
+  } = useSWR(id ? `/api/activities/${id}` : null);
 
   const { updateActivity, isLoading, error } = useUpdateActivity(id);
+
   const [successMessage, setSuccessMessage] = useState("");
   const [isEditingState, setIsEditingState] = useState(true);
-  const { data: categoriesData } = useFetchAllPages("/api/categories");
+  const {
+    data: categoriesData,
+    error: categoriesError,
+    isValidating: isValidatingCategories,
+  } = useFetchAllPages("/api/categories");
 
-  if (dataError) return <div>Unable to load activitiy data</div>;
-  if (!data) return <LoadingSpinner variant="page" />;
+  const isInitialLoading =
+    (!data && isValidatingActivity) ||
+    (!categoriesData && isValidatingCategories);
+
+  if (dataError || categoriesError) {
+    return <div>Unable to load data</div>;
+  }
+
+  if (isInitialLoading || (isLoading && isEditingState)) {
+    return <LoadingSpinner variant="page" />;
+  }
+
+  if (!data || !categoriesData) {
+    return <div>Data not found</div>;
+  }
 
   // Map category names from activity data to the corresponding IDs from the categoriesData collection
   const selectedCategoryIds = data.categories
