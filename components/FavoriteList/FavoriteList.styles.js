@@ -12,11 +12,6 @@ export const ErrorMessage = styled.p`
   text-align: center;
 `;
 
-export const LoadingMessage = styled.p`
-  text-align: center;
-  margin: 20px;
-`;
-
 export const EndMessage = styled.p`
   text-align: center;
   margin: 20px;

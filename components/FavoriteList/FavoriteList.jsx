@@ -1,12 +1,8 @@
 import useFavorites from "@/hooks/useFavorites";
 import useFetchAllPages from "@/hooks/useFetchAllPages";
 import Activity from "@/components/Activity/Activity";
-import {
-  Container,
-  ErrorMessage,
-  LoadingMessage,
-  EndMessage,
-} from "./FavoriteList.styles";
+import { Container, ErrorMessage, EndMessage } from "./FavoriteList.styles";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 export default function FavoriteList() {
   const {
@@ -22,8 +18,7 @@ export default function FavoriteList() {
   }
 
   if (isLoading) {
-    // Todo: Create loading spinner component or skeleton
-    return <LoadingMessage>Loading activities...</LoadingMessage>;
+    return <LoadingSpinner variant="page" />;
   }
 
   return (

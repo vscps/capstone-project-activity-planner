@@ -1,12 +1,15 @@
 import Head from "next/head";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import ActivityForm from "@/components/ActivityForm/ActivityForm";
+import Link from "next/link";
+import useSWR, { mutate } from "swr";
+
 import { useUpdateActivity } from "@/hooks/useActivityMutations";
 import useFetchAllPages from "@/hooks/useFetchAllPages";
-import useSWR, { mutate } from "swr";
+
+import ActivityForm from "@/components/ActivityForm/ActivityForm";
 import Button from "@/components/Button/Button";
-import Link from "next/link";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
 export default function UpdatePage() {
   const router = useRouter();
@@ -19,7 +22,7 @@ export default function UpdatePage() {
   const { data: categoriesData } = useFetchAllPages("/api/categories");
 
   if (dataError) return <div>Unable to load activitiy data</div>;
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <LoadingSpinner variant="page" />;
 
   // Map category names from activity data to the corresponding IDs from the categoriesData collection
   const selectedCategoryIds = data.categories

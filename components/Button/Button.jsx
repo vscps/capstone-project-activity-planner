@@ -4,11 +4,12 @@ import {
   DeleteIcon,
   EditIcon,
   FavoriteIcon,
-  LoadingSpinner,
   RemoveFavoriteIcon,
   StyledButton,
   StyledButtonLink,
 } from "./Button.styles";
+
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
 export default function Button({
   text,
