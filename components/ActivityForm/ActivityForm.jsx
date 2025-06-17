@@ -1,16 +1,11 @@
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+
 import FormField from "../FormField/FormField";
 import InputField from "../FormControls/InputField/InputField";
 import TextareaField from "../FormControls/TextareaField/TextareaField";
 import CategoryCheckboxGroup from "../FormControls/CheckboxGroup/CheckboxGroup";
-import {
-  CancelButton,
-  FormWrapper,
-  PlaceholderImage,
-  SubmitButton,
-} from "./ActivityForm.styles";
+import Button from "../Button/Button";
+import { FormWrapper, PlaceholderImage } from "./ActivityForm.styles";
 
 export default function ActivityForm({
   onSubmit,
@@ -28,22 +23,19 @@ export default function ActivityForm({
     setValue,
     getValues,
     formState: { errors },
-  } = useForm();
-
-  useEffect(() => {
-    if (isEditingState && activityData) {
-      setValue("title", activityData.title || "");
-      setValue("description", activityData.description || "");
-      setValue("area", activityData.area || "");
-      setValue("country", activityData.country || "");
-      setValue("categories", selectedCategoryIds || []);
-    }
-  }, [isEditingState, activityData, selectedCategoryIds, setValue]);
+  } = useForm({
+    defaultValues: {
+      title: isEditingState ? activityData?.title || "" : "",
+      description: isEditingState ? activityData?.description || "" : "",
+      area: isEditingState ? activityData?.area || "" : "",
+      country: isEditingState ? activityData?.country || "" : "",
+      categories: isEditingState ? selectedCategoryIds || [] : [],
+    },
+  });
 
   const handleFormSubmit = async (data) => {
     await onSubmit(data);
   };
-  const router = useRouter();
   const buttonPurpose = isEditingState ? "confirm" : "submit";
   return (
     <FormWrapper onSubmit={handleSubmit(handleFormSubmit)}>
@@ -112,20 +104,20 @@ export default function ActivityForm({
         />
       </FormField>
 
-      <SubmitButton
+      <Button
         type="submit"
         purpose={buttonPurpose}
         isLoading={isLoading}
         text={submitButtonText}
       />
-      {isEditingState ? (
-        <CancelButton
-          purpose={"cancel"}
-          text={"Cancel editing"}
-          onClick={() => router.push(`../${activityData._id}`)}
-        ></CancelButton>
-      ) : (
-        ""
+
+      {isEditingState && (
+        <Button
+          purpose="cancel"
+          text="Cancel editing"
+          as="a"
+          href={`../${activityData._id}`}
+        />
       )}
 
       {!isEditingState && successMessage && <p>{successMessage}</p>}
