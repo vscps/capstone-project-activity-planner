@@ -17,12 +17,13 @@ import BackLink from "../BackLink/BackLink.jsx";
 import Button from "../Button/Button.jsx";
 import useFavorites from "@/hooks/useFavorites.js";
 import ActivityDelete from "../ActivityDelete/ActivityDelete.jsx";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner.jsx";
 
 export default function ActivityDetail({ data }) {
   const [_, isFavorite, toggleFavorite] = useFavorites();
 
   if (!data) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner variant="page" />;
   }
 
   const buttonText = isFavorite(data._id)
