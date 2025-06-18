@@ -89,7 +89,7 @@ export const StyledButton = styled.button`
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;
-  margin: 15px 15px 15px 0;
+  margin: 15px 0px;
   height: 50px;
   padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
   position: relative;

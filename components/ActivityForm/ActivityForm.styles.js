@@ -26,4 +26,5 @@ export const SubmitButtonRow = styled.div`
   flex-wrap: nowrap;
   width: 100%;
   justify-content: center;
+  gap: 15px;
 `;
