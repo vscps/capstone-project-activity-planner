@@ -94,8 +94,8 @@ export const Category = styled.button`
   align-items: center;
   margin: 5px 5px 0px 0px;
   padding: 3px 8px;
-  background-color: ${(props) => (props.$active ? "#127b88" : "#fff")};
-  color: ${(props) => (props.$active ? "#fff" : "#127b88")};
+  background-color: #127b88;
+  color: #ffffff;
   border: 2px solid #127b88;
   border-radius: 4px;
   font-size: 12px;

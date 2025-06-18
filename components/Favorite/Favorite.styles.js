@@ -19,7 +19,7 @@ export const RemoveFavoriteIcon = styled(MdBookmarkAdded)`
   top: -30px;
   right: 0px;
   margin: 5px;
-  color: #ffc200;
+  color: #127b88;
   font-size: 50px;
   z-index: 10;
   cursor: pointer;
