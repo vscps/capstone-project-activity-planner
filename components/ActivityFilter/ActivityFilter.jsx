@@ -8,6 +8,8 @@ import {
   ResetLink,
   FilterSection,
 } from "./ActivityFilter.styles";
+import ButtonRow from "../ButtonRow/ButtonRow";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { LuFilter } from "react-icons/lu";
 
 export default function ActivityFilter({
@@ -45,63 +47,67 @@ export default function ActivityFilter({
   const hasActiveFilters = Object.keys(activeFilters).length > 0;
 
   return (
-    <FilterContainer>
-      <FilterHeader
-        onClick={onToggle}
-        aria-label={`${isOpen ? "Close" : "Open"} filters`}
-        aria-expanded={isOpen}
-      >
-        <LuFilter />
-      </FilterHeader>
+    <>
+      <ButtonRow showFilter={true}>
+        <FilterHeader
+          onClick={onToggle}
+          aria-label={`${isOpen ? "Close" : "Open"} filters`}
+          aria-expanded={isOpen}
+        >
+          <LuFilter />
+        </FilterHeader>
+        <ToggleSwitch initialState={false} />
+      </ButtonRow>
+      <FilterContainer>
+        {!isOpen && hasActiveFilters && (
+          <ActiveFilters>
+            {Object.entries(activeFilters).map(([key, values]) =>
+              values.map((value) => {
+                const isActive = activeFilters[key]?.includes(value);
+                return (
+                  <FilterTag
+                    key={`${key}-${value}`}
+                    $active={isActive}
+                    onClick={() => handleSelectFilter(key, value)}
+                  >
+                    {value}
+                    {isActive && <span>×</span>}
+                  </FilterTag>
+                );
+              })
+            )}
+          </ActiveFilters>
+        )}
 
-      {!isOpen && hasActiveFilters && (
-        <ActiveFilters>
-          {Object.entries(activeFilters).map(([key, values]) =>
-            values.map((value) => {
-              const isActive = activeFilters[key]?.includes(value);
-              return (
-                <FilterTag
-                  key={`${key}-${value}`}
-                  $active={isActive}
-                  onClick={() => handleSelectFilter(key, value)}
-                >
-                  {value}
-                  {isActive && <span>×</span>}
-                </FilterTag>
-              );
-            })
-          )}
-        </ActiveFilters>
-      )}
+        {isOpen && (
+          <FilterBody>
+            {Object.entries(filterOptions).map(([key, values]) => (
+              <FilterSection key={key}>
+                <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
+                <FilterTagContainer>
+                  {values.map((value) => {
+                    const isActive = activeFilters[key]?.includes(value);
+                    return (
+                      <FilterTag
+                        key={`${key}-${value}`}
+                        $active={isActive}
+                        onClick={() => handleSelectFilter(key, value)}
+                      >
+                        {value}
+                        {isActive && <span>×</span>}
+                      </FilterTag>
+                    );
+                  })}
+                </FilterTagContainer>
+              </FilterSection>
+            ))}
 
-      {isOpen && (
-        <FilterBody>
-          {Object.entries(filterOptions).map(([key, values]) => (
-            <FilterSection key={key}>
-              <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
-              <FilterTagContainer>
-                {values.map((value) => {
-                  const isActive = activeFilters[key]?.includes(value);
-                  return (
-                    <FilterTag
-                      key={`${key}-${value}`}
-                      $active={isActive}
-                      onClick={() => handleSelectFilter(key, value)}
-                    >
-                      {value}
-                      {isActive && <span>×</span>}
-                    </FilterTag>
-                  );
-                })}
-              </FilterTagContainer>
-            </FilterSection>
-          ))}
-
-          {hasActiveFilters && (
-            <ResetLink onClick={handleResetFilters}>Reset all</ResetLink>
-          )}
-        </FilterBody>
-      )}
-    </FilterContainer>
+            {hasActiveFilters && (
+              <ResetLink onClick={handleResetFilters}>Reset all</ResetLink>
+            )}
+          </FilterBody>
+        )}
+      </FilterContainer>
+    </>
   );
 }

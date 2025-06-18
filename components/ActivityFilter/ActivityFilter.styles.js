@@ -4,7 +4,7 @@ export const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
 
   /* sticky for useEffect -> setSize(1); in ActivityList to simulating UX best practice */
   /* position: sticky;
@@ -14,19 +14,22 @@ export const FilterContainer = styled.div`
   @media (max-width: 768px) {
     padding: 0 15px;
   }
+
+  @media (min-width: 768px) {
+    align-self: flex-end;
+    margin-right: 20px;
+  }
 `;
 
 export const FilterHeader = styled.button`
   cursor: pointer;
   border-radius: 3px;
   padding: 8px 10px;
-  margin-bottom: 10px;
   align-self: flex-end;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
+  height: 45px;
   svg {
     font-size: 25px;
     color: #127b88;
