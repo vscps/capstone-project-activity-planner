@@ -6,6 +6,7 @@ import useSWR, { mutate } from "swr";
 
 import { useUpdateActivity } from "@/hooks/useActivityMutations";
 import useFetchAllPages from "@/hooks/useFetchAllPages";
+import useActivityPreviewMode from "@/hooks/useActivityPreviewMode";
 
 import ActivityForm from "@/components/ActivityForm/ActivityForm";
 import Button from "@/components/Button/Button";
@@ -15,6 +16,7 @@ import { Container } from "@/components/ActivityList/ActivityList.styles";
 export default function UpdatePage() {
   const router = useRouter();
   const { id } = router.query;
+
   const {
     data,
     error: dataError,
@@ -25,11 +27,16 @@ export default function UpdatePage() {
 
   const [successMessage, setSuccessMessage] = useState("");
   const [isEditingState, setIsEditingState] = useState(true);
+  const [isPreviewMode, setPreviewMode] = useState(false);
+
   const {
     data: categoriesData,
     error: categoriesError,
     isValidating: isValidatingCategories,
   } = useFetchAllPages("/api/categories");
+
+  const { activityData, selectedCategoryIds, removeItem, setPreviewData } =
+    useActivityPreviewMode({ baseData: data, categoriesData });
 
   const isInitialLoading =
     (!data && isValidatingActivity) ||
@@ -47,34 +54,24 @@ export default function UpdatePage() {
     return <div>Data not found</div>;
   }
 
-  // Map category names from activity data to the corresponding IDs from the categoriesData collection
-  const selectedCategoryIds = data.categories
-    .map((catName) => {
-      const category = categoriesData.find(
-        (catData) => catData.name === catName
-      );
-      return category ? category.id : null;
-    })
-    .filter((id) => id !== null);
-
-  const handleSubmit = async (data) => {
+  const handleSubmit = async (formData) => {
     try {
-      const updatedActivity = await updateActivity(id, data);
-
+      const updatedActivity = await updateActivity(id, formData);
       mutate(`/api/activities/${id}`);
       setIsEditingState(false);
-
       setSuccessMessage(
         `Activity "${updatedActivity.title}" updated successfully!`
       );
-    } catch (err) {
-      console.log("Failed to update activity.");
+      removeItem();
+    } catch (updateError) {
+      console.error("Failed to update activity.", updateError);
     }
   };
 
   const titleMessage = isEditingState
     ? `Edit activity "${data.title}"`
     : successMessage;
+
   return (
     <>
       <Head>
@@ -90,11 +87,13 @@ export default function UpdatePage() {
               submitButtonText="Update Activity"
               successMessage={successMessage}
               isEditingState={true}
-              activityData={data}
+              isPreviewMode={isPreviewMode}
+              setPreviewMode={setPreviewMode}
+              activityData={activityData}
               categoriesData={categoriesData}
               selectedCategoryIds={selectedCategoryIds}
             />
-            {error && <>{`Unable to update activity`}</>}
+            {error && <p>Unable to update activity</p>}
           </>
         ) : (
           <>
@@ -111,6 +110,7 @@ export default function UpdatePage() {
             </p>
           </>
         )}
+        {isPreviewMode && <p>Preview mode is enabled.</p>}
       </Container>
     </>
   );
