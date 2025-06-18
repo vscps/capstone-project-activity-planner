@@ -48,8 +48,7 @@ export default function ActivityFilter({
 
   return (
     <>
-      <ButtonRow>
-        <ToggleSwitch initialState={false} />
+      <ButtonRow showFilter={true}>
         <FilterHeader
           onClick={onToggle}
           aria-label={`${isOpen ? "Close" : "Open"} filters`}
@@ -57,6 +56,7 @@ export default function ActivityFilter({
         >
           <LuFilter />
         </FilterHeader>
+        <ToggleSwitch initialState={false} />
       </ButtonRow>
       <FilterContainer>
         {!isOpen && hasActiveFilters && (

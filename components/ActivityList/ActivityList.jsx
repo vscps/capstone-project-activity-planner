@@ -8,6 +8,7 @@ import {
   ErrorMessage,
   LoadingMessage,
   EndMessage,
+  Listing,
 } from "./ActivityList.styles";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
@@ -131,25 +132,33 @@ export default function ActivityList() {
         isOpen={isFilterOpen}
         onToggle={handleToggleFilter}
       />
+      <Listing>
+        {activities.length > 0 ? (
+          <>
+            {activities.map((activity) => (
+              <Activity data={activity} key={activity._id || activity.id} />
+            ))}
 
-      {activities.length > 0 ? (
-        <>
-          {activities.map((activity) => (
-            <Activity data={activity} key={activity._id || activity.id} />
-          ))}
-
-          {hasMore ? (
-            <div ref={loadMoreRef}>
-              {isValidating && (
-                <LoadingMessage>Loading more activities...</LoadingMessage>
-              )}
-            </div>
-          ) : (
-            <EndMessage>No more activities available</EndMessage>
-          )}
-        </>
+            {hasMore ? (
+              <div ref={loadMoreRef}>
+                {isValidating && (
+                  <LoadingMessage>Loading more activities...</LoadingMessage>
+                )}
+              </div>
+            ) : (
+              ""
+            )}
+          </>
+        ) : (
+          ""
+        )}
+      </Listing>
+      {hasMore ? (
+        ""
       ) : (
-        <EndMessage>No activities found matching your filters</EndMessage>
+        <>
+          <EndMessage>No more activities available</EndMessage>
+        </>
       )}
     </Container>
   );

@@ -40,7 +40,7 @@ export const StyledLabel = styled.label`
   display: flex;
   align-items: center;
   width: 80px;
-  height: 41px;
+  height: 45px;
   border: 2px solid black;
   background-color: #dad8d8;
   border-radius: 3px;
@@ -59,7 +59,7 @@ export const Input = styled.input.attrs({ type: "checkbox" })`
   }
 
   &:checked + label .knob {
-    transform: translateX(38px);
+    transform: translateX(34px);
     background-color: #ffffff;
   }
 
@@ -74,8 +74,8 @@ export const Knob = styled.div`
   position: absolute;
   top: 4px;
   left: 4px;
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   background-color: #127b88;
   border-radius: 2px;
   transition: transform 0.3s ease;
