@@ -4,7 +4,7 @@ export const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
 
   /* sticky for useEffect -> setSize(1); in ActivityList to simulating UX best practice */
   /* position: sticky;

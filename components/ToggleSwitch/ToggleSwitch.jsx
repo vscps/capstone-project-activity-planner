@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { Input, StyledLabel, StyledLink, Wrapper } from "./ToggleSwitch.styles";
+import {
+  BookmarkIcon,
+  BookmarkIconAdded,
+  Input,
+  StyledLabel,
+  Knob,
+  Wrapper,
+} from "./ToggleSwitch.styles";
 
 export default function ToggleSwitch({ initialState }) {
   const [viewFavorites, setViewFavorites] = useState(initialState);
@@ -16,18 +23,20 @@ export default function ToggleSwitch({ initialState }) {
   }
 
   return (
-    <>
-      <Wrapper>
-        <p>View only favorites</p>
-        <Input
-          id="toggle_switch"
-          name="toggle_switch"
-          type="checkbox"
-          checked={viewFavorites}
-          onChange={handleToggle}
-        />
-        <StyledLabel htmlFor="toggle_switch"></StyledLabel>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <Input
+        id="toggle_switch"
+        checked={viewFavorites}
+        onChange={handleToggle}
+      />
+      <StyledLabel htmlFor="toggle_switch">
+        {viewFavorites ? (
+          <BookmarkIconAdded className="icon" />
+        ) : (
+          <BookmarkIcon className="icon" />
+        )}
+        <Knob className="knob" />
+      </StyledLabel>
+    </Wrapper>
   );
 }

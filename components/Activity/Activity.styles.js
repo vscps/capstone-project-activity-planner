@@ -4,8 +4,7 @@ import Link from "next/link";
 import Favorite from "../Favorite/Favorite";
 
 export const Wrapper = styled.article`
-  width: 100%;
-  max-width: 400px;
+  width: 380px;
   position: relative;
   margin: 15px 20px;
 `;
