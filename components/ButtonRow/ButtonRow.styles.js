@@ -7,7 +7,7 @@ export const Row = styled.div`
   justify-content: ${({ showFilter }) =>
     showFilter ? "space-between" : "flex-end"};
   width: 380px;
-  margin-bottom: 20px;
+  margin: 40px 0 20px 0;
 
   @media (min-width: 768px) {
     width: 100%;

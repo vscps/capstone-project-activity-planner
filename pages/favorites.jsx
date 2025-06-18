@@ -3,9 +3,5 @@ import { Container } from "@/components/ActivityDetail/ActivityDetail.styles";
 import ToggleSwitch from "@/components/ToggleSwitch/ToggleSwitch";
 
 export default function HomePage() {
-  return (
-    <Container>
-      <FavoriteList />
-    </Container>
-  );
+  return <FavoriteList />;
 }

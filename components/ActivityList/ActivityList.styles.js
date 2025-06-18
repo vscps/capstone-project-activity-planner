@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 0;
+  width: 100%;
 `;
 
 export const Listing = styled.div`
