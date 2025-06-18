@@ -33,7 +33,9 @@ export default function Activity({ data }) {
         </StyledLink>
         <TitleArea>
           <StyledLink href={`/activity/${data._id}`}>
-            <Heading>{data.title}</Heading>
+            <Heading>
+              {data.title} | {data.country}
+            </Heading>
           </StyledLink>
           <CategoryArea>
             {data.categories?.map((item, index) => (

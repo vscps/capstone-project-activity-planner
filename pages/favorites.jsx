@@ -5,7 +5,6 @@ import ToggleSwitch from "@/components/ToggleSwitch/ToggleSwitch";
 export default function HomePage() {
   return (
     <Container>
-      <ToggleSwitch initialState={true} />
       <FavoriteList />
     </Container>
   );

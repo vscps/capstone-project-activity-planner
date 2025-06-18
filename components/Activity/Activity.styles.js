@@ -4,8 +4,7 @@ import Link from "next/link";
 import Favorite from "../Favorite/Favorite";
 
 export const Wrapper = styled.article`
-  width: 100%;
-  max-width: 400px;
+  width: 380px;
   position: relative;
   margin: 15px 20px;
 `;
@@ -20,8 +19,7 @@ export const Card = styled.div`
   flex-direction: column;
   border: 1.5px solid black;
   border-radius: 10px 10px 0 0;
-  width: 100%;
-  max-width: 400px;
+  width: 380px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -36,6 +34,10 @@ export const Card = styled.div`
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: white;
+
+  &:hover {
+    color: white;
+  }
   &:visited {
     color: white;
   }
@@ -54,46 +56,47 @@ export const StyledImage = styled(Image)`
 
 export const TitleArea = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   background-color: #000;
   color: #fff;
-  height: 80px;
+  min-height: 80px;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal;
   font-size: 22px;
 `;
 
 export const Heading = styled.h2`
-  margin: 10px;
+  margin: 10px 10px 0 10px;
+  font-size: 32px;
+  flex-grow: 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid white;
+  word-wrap: break-word;
 `;
 
 export const CategoryArea = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: flex-end;
   background-color: #000;
   color: #fff;
   height: 100%;
-  width: 50%;
+  width: 100%;
   padding: 10px;
 `;
 
-export const Category = styled.div`
+export const Category = styled.button`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  margin: 5px 0px 0px 5px;
-  padding: 3px 3px;
-  background-color: #fff;
-  color: #000;
-  height: 20px;
-  width: auto;
-  border-radius: 3px;
-  border: 1px solid grey;
+  margin: 5px 5px 0px 0px;
+  padding: 3px 8px;
+  background-color: #127b88;
+  color: #ffffff;
+  border: 2px solid #127b88;
+  border-radius: 4px;
   font-size: 12px;
-  font-weight: 500;
+  cursor: pointer;
 `;
