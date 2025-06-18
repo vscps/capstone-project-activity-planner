@@ -20,10 +20,11 @@ export const PlaceholderImage = styled(Image)`
   border-radius: 0.5rem;
 `;
 
-export const SubmitButton = styled(Button)`
-  align-self: center;
-`;
-
-export const CancelButton = styled(Button)`
-  align-self: center;
+export const SubmitButtonRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: center;
+  gap: 15px;
 `;

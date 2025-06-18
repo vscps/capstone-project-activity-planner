@@ -5,7 +5,13 @@ import InputField from "../FormControls/InputField/InputField";
 import TextareaField from "../FormControls/TextareaField/TextareaField";
 import CategoryCheckboxGroup from "../FormControls/CheckboxGroup/CheckboxGroup";
 import Button from "../Button/Button";
-import { FormWrapper, PlaceholderImage } from "./ActivityForm.styles";
+import {
+  SubmitButton,
+  CancelButton,
+  FormWrapper,
+  PlaceholderImage,
+  SubmitButtonRow,
+} from "./ActivityForm.styles";
 
 export default function ActivityForm({
   onSubmit,
@@ -49,11 +55,9 @@ export default function ActivityForm({
         height={300}
         alt="Activity Picture"
       />
-
       <FormField label="Title" error={errors.title?.message}>
         <InputField {...register("title", { required: "Title is required" })} />
       </FormField>
-
       <FormField
         label="Description"
         htmlFor="description"
@@ -67,7 +71,6 @@ export default function ActivityForm({
           })}
         />
       </FormField>
-
       <FormField label="Area" htmlFor="area" error={errors.area?.message}>
         <InputField
           id="area"
@@ -75,7 +78,6 @@ export default function ActivityForm({
           {...register("area", { required: "Area is required" })}
         />
       </FormField>
-
       <FormField
         label="Country"
         htmlFor="country"
@@ -87,7 +89,6 @@ export default function ActivityForm({
           {...register("country", { required: "Country is required" })}
         />
       </FormField>
-
       <FormField
         label="Categories"
         htmlFor="categories"
@@ -103,24 +104,23 @@ export default function ActivityForm({
           selectedCategoryIds={selectedCategoryIds}
         />
       </FormField>
-
-      <Button
-        type="submit"
-        purpose={buttonPurpose}
-        isLoading={isLoading}
-        text={submitButtonText}
-      />
-
-      {isEditingState && (
+      <SubmitButtonRow>
         <Button
-          purpose="cancel"
-          text="Cancel editing"
-          as="a"
-          href={`../${activityData._id}`}
+          type="submit"
+          purpose={buttonPurpose}
+          isLoading={isLoading}
+          text={submitButtonText}
         />
-      )}
-
-      {!isEditingState && successMessage && <p>{successMessage}</p>}
+        {isEditingState && (
+          <Button
+            purpose="cancel"
+            text="Cancel editing"
+            as="a"
+            href={`../${activityData._id}`}
+          />
+        )}
+        {!isEditingState && successMessage && <p>{successMessage}</p>}
+      </SubmitButtonRow>
     </FormWrapper>
   );
 }

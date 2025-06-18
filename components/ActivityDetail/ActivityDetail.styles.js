@@ -33,48 +33,47 @@ export const StyledImage = styled(Image)`
 
 export const TitleArea = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   background-color: #000;
   color: #fff;
-  height: 80px;
+  min-height: 80px;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal;
   font-size: 32px;
 `;
 
 export const Heading = styled.h1`
   margin: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid white;
+  word-wrap: break-word;
+  width: 100%;
 `;
 
 export const CategoryArea = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: flex-end;
   background-color: #000;
   color: #fff;
   height: 100%;
-  width: 50%;
+  width: 100%;
   padding: 10px;
 `;
 
-export const Category = styled.div`
+export const Category = styled.button`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  margin: 5px 0px 0px 5px;
-  padding: 3px 3px;
-  background-color: #fff;
-  color: #000;
-  height: 20px;
-  width: auto;
-  border-radius: 3px;
-  border: 1px solid grey;
+  margin: 5px 5px 0px 0px;
+  padding: 3px 8px;
+  background-color: #127b88;
+  color: #ffffff;
+  border: 2px solid #127b88;
+  border-radius: 4px;
   font-size: 12px;
-  font-weight: 500;
 `;
 
 export const MainContent = styled.div`
@@ -87,7 +86,7 @@ export const MainContent = styled.div`
   border-radius: 10px 10px 0 0;
   background-color: rgba(225, 225, 225, 0.1);
   backdrop-filter: blur(3px);
-  color: #000;
+  color: grey;
   width: 100%;
   font-weight: 500;
   max-width: 75%;
@@ -112,10 +111,18 @@ export const StyledActivityDescription = styled.p`
   margin: 10px 0px;
   padding: 20px 0px;
   border-top: 1px solid #ccc;
+  line-height: 1.5;
+  color: grey;
+`;
+export const StyledOptionsTitle = styled.h3`
+  margin: 10px 0px;
+  font-size: 2em;
 `;
 
 export const OptionsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
+  gap: 15px;
 `;
