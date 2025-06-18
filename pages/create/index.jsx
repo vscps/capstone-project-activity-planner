@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import ActivityForm from "@/components/ActivityForm/ActivityForm";
 import { useCreateActivity } from "@/hooks/useActivityMutations";
 import useFetchAllPages from "@/hooks/useFetchAllPages";
+import { Container } from "@/components/ActivityList/ActivityList.styles";
 
 export default function CreatePage() {
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function CreatePage() {
       <Head>
         <title>create</title>
       </Head>
-      <main>
+      <Container>
         <h1>Create a new activity</h1>
         {error && <>{`Something went wrong`}</>}
         <ActivityForm
@@ -43,7 +44,7 @@ export default function CreatePage() {
           successMessage={successMessage}
           categoriesData={categoriesData}
         />
-      </main>
+      </Container>
     </>
   );
 }

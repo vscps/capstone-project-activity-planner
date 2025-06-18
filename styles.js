@@ -28,7 +28,6 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding-bottom: 150px;
     color: grey;
   }
