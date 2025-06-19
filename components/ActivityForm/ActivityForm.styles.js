@@ -5,7 +5,7 @@ export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 2rem;
+  padding: 15px;
   max-width: 500px;
   width: 100%;
   border-radius: 1 rem;
@@ -25,6 +25,10 @@ export const SubmitButtonRow = styled.div`
   width: 100%;
   justify-content: center;
   gap: 15px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 `;
 
 export const MessageRow = styled.div`

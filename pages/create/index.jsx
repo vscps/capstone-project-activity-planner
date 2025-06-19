@@ -40,7 +40,7 @@ export default function CreatePage() {
         <ActivityForm
           onSubmit={handleSubmit}
           isLoading={isLoading}
-          submitButtonText="Create Activity"
+          submitButtonText="Create"
           successMessage={successMessage}
           categoriesData={categoriesData}
         />

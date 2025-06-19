@@ -124,4 +124,10 @@ export const OptionsWrapper = styled.div`
   justify-content: center;
   width: 100%;
   gap: 15px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 `;

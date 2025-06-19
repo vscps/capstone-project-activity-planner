@@ -113,7 +113,7 @@ export default function ActivityForm({
         {isEditingState && (
           <Button
             purpose="cancel"
-            text="Cancel editing"
+            text="Cancel"
             as="a"
             href={`../${activityData._id}`}
           />

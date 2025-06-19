@@ -6,6 +6,7 @@ export const StyledTextarea = styled.textarea`
   font-size: 1rem;
   background-color: white;
   border: 1px solid #ccc;
+  color: #808080;
   border-radius: 4px;
   resize: vertical;
 `;

@@ -76,9 +76,7 @@ export default function UpdatePage() {
     }
   };
 
-  const titleMessage = isEditingState
-    ? `Edit activity "${data.title}"`
-    : successMessage;
+  const titleMessage = isEditingState ? `Edit "${data.title}"` : successMessage;
   return (
     <>
       <Head>
@@ -91,7 +89,7 @@ export default function UpdatePage() {
             <ActivityForm
               onSubmit={handleSubmit}
               isLoading={isLoading}
-              submitButtonText="Update Activity"
+              submitButtonText="Update"
               successMessage={successMessage}
               isEditingState={true}
               activityData={data}

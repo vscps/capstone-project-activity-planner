@@ -1,14 +1,13 @@
 import {
   CheckboxGroupWrapper,
   CheckboxLabel,
-  ErrorText,
+  CheckboxInput,
 } from "./CheckboxGroup.styles";
 
 export default function CategoryCheckboxGroup({
   register,
   setValue,
   getValues,
-  errors,
   categoriesData,
 }) {
   const handleCheckboxChange = (e) => {
@@ -32,7 +31,7 @@ export default function CategoryCheckboxGroup({
             const isChecked = selected.includes(cat.id);
             return (
               <CheckboxLabel key={cat.id}>
-                <input
+                <CheckboxInput
                   type="checkbox"
                   value={cat.id}
                   checked={isChecked}
