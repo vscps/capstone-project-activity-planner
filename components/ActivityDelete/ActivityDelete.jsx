@@ -47,7 +47,7 @@ export default function ActivityDelete({ activityID, activityTitle }) {
   };
 
   return (
-    <div>
+    <>
       {error && <p>Error: {error.message}</p>}
 
       {!showConfirmation && !deletionConfirmed && (
@@ -91,6 +91,6 @@ export default function ActivityDelete({ activityID, activityTitle }) {
           activities in three seconds.
         </SuccessMessage>
       )}
-    </div>
+    </>
   );
 }

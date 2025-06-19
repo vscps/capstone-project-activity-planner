@@ -71,10 +71,7 @@ export default function UpdatePage() {
     }
   };
 
-  const titleMessage = isEditingState
-    ? `Edit activity "${data.title}"`
-    : successMessage;
-
+  const titleMessage = isEditingState ? `Edit "${data.title}"` : successMessage;
   return (
     <>
       <Head>
@@ -88,7 +85,7 @@ export default function UpdatePage() {
               key={isPreviewMode ? "preview" : JSON.stringify(activityData)}
               onSubmit={handleSubmit}
               isLoading={isLoading}
-              submitButtonText="Update Activity"
+              submitButtonText="Update"
               successMessage={successMessage}
               isEditingState={true}
               isPreviewMode={isPreviewMode}

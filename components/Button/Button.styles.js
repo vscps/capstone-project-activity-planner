@@ -116,7 +116,7 @@ export const StyledButton = styled.button`
   white-space: nowrap;
   justify-content: center;
   line-height: 1.25;
-  margin: 15px 0px;
+  /* margin: 15px 0px; */
   height: 50px;
   padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
   position: relative;
@@ -181,7 +181,7 @@ export const StyledButtonLink = styled(Link)`
   white-space: nowrap;
   justify-content: center;
   line-height: 1.25;
-  margin: 15px 15px 15px 0;
+  /* margin: 15px 15px 15px 0; */
   height: 50px;
   padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
   position: relative;

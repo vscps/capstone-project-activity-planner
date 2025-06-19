@@ -1,6 +1,5 @@
 import {
   Container,
-  Card,
   ImageArea,
   StyledImage,
   TitleArea,
@@ -11,11 +10,7 @@ import {
   StyledActivityTitle,
   StyledActivityCountry,
   StyledActivityDescription,
-  StyledOptionsTitle,
-  OptionsWrapper,
 } from "./ActivityPreview.styles.js";
-
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner.jsx";
 
 export default function ActivityPreview({
   data,

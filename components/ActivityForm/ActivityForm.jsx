@@ -164,8 +164,9 @@ export default function ActivityForm({
           <Button
             type="button"
             purpose="cancel"
-            text="Cancel editing"
-            onClick={handleCancel}
+            text="Cancel"
+            as="a"
+            href={`../${activityData._id}`}
           />
         )}
       </SubmitButtonRow>
