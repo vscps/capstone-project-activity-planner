@@ -45,4 +45,6 @@ export const PaddingContainer = styled.div`
   justify-content: center;
   width: 100%;
   margin-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
 `;
