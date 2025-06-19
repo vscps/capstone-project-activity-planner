@@ -18,7 +18,7 @@ export const NavIconLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: #808080;
   font-size: 2rem;
   text-decoration: none;
   height: 100%;
@@ -26,7 +26,7 @@ export const NavIconLink = styled.a`
   &:hover,
   &:visited:hover {
     background-color: rgb(240, 240, 240);
-    color: black;
+    color: #808080;
 
     @media (max-width: 768px) {
       background-color: transparent;
@@ -34,8 +34,7 @@ export const NavIconLink = styled.a`
   }
 
   &:visited {
-    color: black;
-    /* background-color removed */
+    color: #808080;
   }
 
   &:active {
