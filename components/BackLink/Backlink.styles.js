@@ -9,9 +9,10 @@ export const Container = styled(Link)`
   justify-content: center;
   text-decoration: none;
   cursor: pointer;
+  color: grey;
 
   &:visited {
-    color: black;
+    color: grey;
   }
 `;
 

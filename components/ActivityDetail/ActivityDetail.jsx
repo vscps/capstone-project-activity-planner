@@ -11,6 +11,7 @@ import {
   StyledActivityTitle,
   StyledActivityCountry,
   StyledActivityDescription,
+  StyledOptionsTitle,
   OptionsWrapper,
 } from "./ActivityDetail.styles.js";
 import BackLink from "../BackLink/BackLink.jsx";
@@ -66,7 +67,7 @@ export default function ActivityDetail({ data }) {
 
         <BackLink></BackLink>
       </MainContent>
-      <StyledActivityTitle>Options</StyledActivityTitle>
+      <StyledOptionsTitle>Options</StyledOptionsTitle>
       <OptionsWrapper>
         <Button
           text={buttonText}

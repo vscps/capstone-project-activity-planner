@@ -10,6 +10,7 @@ import useFetchAllPages from "@/hooks/useFetchAllPages";
 import ActivityForm from "@/components/ActivityForm/ActivityForm";
 import Button from "@/components/Button/Button";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
+import { Container } from "@/components/ActivityList/ActivityList.styles";
 
 export default function UpdatePage() {
   const router = useRouter();
@@ -79,7 +80,7 @@ export default function UpdatePage() {
       <Head>
         <title>{titleMessage}</title>
       </Head>
-      <main>
+      <Container>
         <h1>{titleMessage}</h1>
         {isEditingState ? (
           <>
@@ -110,7 +111,7 @@ export default function UpdatePage() {
             </p>
           </>
         )}
-      </main>
+      </Container>
     </>
   );
 }
