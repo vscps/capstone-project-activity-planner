@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import useLocalStorageState from "use-local-storage-state";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import FormField from "../FormField/FormField";
@@ -27,12 +26,10 @@ export default function ActivityForm({
   selectedCategoryIds,
   submitButtonText,
 }) {
-  const [previewData, setPreviewData, { removeItem }] = useLocalStorageState(
+  const [_, setPreviewData, { removeItem }] = useLocalStorageState(
     "previewActivityData",
     { defaultValue: {} }
   );
-
-  const router = useRouter();
 
   const {
     register,
@@ -76,11 +73,6 @@ export default function ActivityForm({
       ...(activityData?.imageUrl ? { imageUrl: activityData.imageUrl } : {}),
     });
     setIsPreviewMode(true);
-  };
-
-  const handleCancel = () => {
-    removeItem();
-    router.push(`/activity/${activityData._id}`);
   };
 
   const buttonPurpose = isEditingState ? "confirm" : "submit";

@@ -14,7 +14,6 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const PAGE_LIMIT = 5;
 
-// This component is based on this blog post: https://www.dhiwise.com/post/mastering-data-fetching-with-nextjs-swr-a-comprehensive-guide#optimizing-performance-and-ux
 export default function ActivityList() {
   const [activeFilters, setActiveFilters] = useState({});
   const [isFilterOpen, setIsFilterOpen] = useState(false);

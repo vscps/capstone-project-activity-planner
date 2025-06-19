@@ -1,6 +1,6 @@
 import useLocalStorageState from "use-local-storage-state";
 
-export default function useFavorites(id) {
+export default function useFavorites() {
   const [favorites, setFavorites] = useLocalStorageState("favorites", {
     defaultValue: [],
   });

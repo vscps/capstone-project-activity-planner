@@ -43,7 +43,6 @@ export default function CreatePage() {
       <PaddingContainer>
         <h1>Create a new activity</h1>
         {error && <>{`Something went wrong`}</>}
-        {error && <>Something went wrong</>}
         {!isPreviewMode ? (
           <ActivityForm
             onSubmit={handleSubmit}
