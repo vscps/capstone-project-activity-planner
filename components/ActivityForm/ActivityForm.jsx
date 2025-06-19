@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 import FormField from "../FormField/FormField";
 import InputField from "../FormControls/InputField/InputField";
@@ -21,7 +22,7 @@ export default function ActivityForm({
   successMessage = null,
   isEditingState,
   isPreviewMode,
-  setPreviewMode,
+  setIsPreviewMode,
   activityData,
   categoriesData,
   selectedCategoryIds,
@@ -40,6 +41,7 @@ export default function ActivityForm({
     setValue,
     getValues,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       title: isEditingState ? activityData?.title || "" : "",
@@ -49,6 +51,18 @@ export default function ActivityForm({
       categories: isEditingState ? selectedCategoryIds || [] : [],
     },
   });
+
+  useEffect(() => {
+    if (!isPreviewMode && activityData) {
+      reset({
+        title: activityData.title || "",
+        description: activityData.description || "",
+        area: activityData.area || "",
+        country: activityData.country || "",
+        categories: selectedCategoryIds || [],
+      });
+    }
+  }, [isPreviewMode, activityData, selectedCategoryIds, reset]);
 
   const handleFormSubmit = async (data) => {
     await onSubmit(data);
@@ -62,7 +76,7 @@ export default function ActivityForm({
       ...(activityData?._id ? { _id: activityData._id } : {}),
       ...(activityData?.imageUrl ? { imageUrl: activityData.imageUrl } : {}),
     });
-    setPreviewMode(true);
+    setIsPreviewMode(true);
   };
 
   const handleCancel = () => {

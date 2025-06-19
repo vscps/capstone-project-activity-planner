@@ -9,6 +9,7 @@ import useFetchAllPages from "@/hooks/useFetchAllPages";
 import useActivityPreviewMode from "@/hooks/useActivityPreviewMode";
 
 import ActivityForm from "@/components/ActivityForm/ActivityForm";
+import ActivityPreview from "@/components/ActivityPreview/ActivityPreview";
 import Button from "@/components/Button/Button";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { Container } from "@/components/ActivityList/ActivityList.styles";
@@ -27,7 +28,7 @@ export default function UpdatePage() {
 
   const [successMessage, setSuccessMessage] = useState("");
   const [isEditingState, setIsEditingState] = useState(true);
-  const [isPreviewMode, setPreviewMode] = useState(false);
+  const [isPreviewMode, setIsPreviewMode] = useState(false);
 
   const {
     data: categoriesData,
@@ -59,9 +60,7 @@ export default function UpdatePage() {
       const updatedActivity = await updateActivity(id, formData);
       mutate(`/api/activities/${id}`);
       setIsEditingState(false);
-      setSuccessMessage(
-        `Activity "${updatedActivity.title}" updated successfully!`
-      );
+      setSuccessMessage(`Activity "${formData.title}" updated successfully!`);
       removeItem();
     } catch (updateError) {
       console.error("Failed to update activity.", updateError);
@@ -79,16 +78,17 @@ export default function UpdatePage() {
       </Head>
       <Container>
         <h1>{titleMessage}</h1>
-        {isEditingState ? (
+        {isEditingState & !isPreviewMode ? (
           <>
             <ActivityForm
+              key={isPreviewMode ? "preview" : JSON.stringify(activityData)}
               onSubmit={handleSubmit}
               isLoading={isLoading}
               submitButtonText="Update Activity"
               successMessage={successMessage}
               isEditingState={true}
               isPreviewMode={isPreviewMode}
-              setPreviewMode={setPreviewMode}
+              setIsPreviewMode={setIsPreviewMode}
               activityData={activityData}
               categoriesData={categoriesData}
               selectedCategoryIds={selectedCategoryIds}
@@ -96,6 +96,10 @@ export default function UpdatePage() {
             {error && <p>Unable to update activity</p>}
           </>
         ) : (
+          ""
+        )}
+
+        {!isEditingState & !isPreviewMode ? (
           <>
             <Button
               text={"Continue editing"}
@@ -109,8 +113,25 @@ export default function UpdatePage() {
               </Link>
             </p>
           </>
+        ) : (
+          ""
         )}
-        {isPreviewMode && <p>Preview mode is enabled.</p>}
+        {isPreviewMode && (
+          <>
+            <ActivityPreview
+              data={activityData}
+              categoriesData={categoriesData}
+              selectedCategoryIds={selectedCategoryIds}
+              isEditingState={true}
+            />
+            <Button
+              text={"Continue editing"}
+              onClick={() => setIsPreviewMode(false)}
+              purpose="submit"
+            />
+            {console.log(isEditingState)}
+          </>
+        )}
       </Container>
     </>
   );

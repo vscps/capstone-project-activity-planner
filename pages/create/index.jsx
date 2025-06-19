@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 
 import ActivityForm from "@/components/ActivityForm/ActivityForm";
 import { useCreateActivity } from "@/hooks/useActivityMutations";
+import ActivityPreview from "@/components/ActivityPreview/ActivityPreview";
+import Button from "@/components/Button/Button";
 import useFetchAllPages from "@/hooks/useFetchAllPages";
 import useActivityPreviewMode from "@/hooks/useActivityPreviewMode";
 import { Container } from "@/components/ActivityList/ActivityList.styles";
@@ -12,6 +14,7 @@ export default function CreatePage() {
   const router = useRouter();
   const { createActivity, isLoading, error } = useCreateActivity();
   const [successMessage, setSuccessMessage] = useState("");
+  const [isPreviewMode, setIsPreviewMode] = useState(false);
 
   const { data: categoriesData } = useFetchAllPages("/api/categories");
 
@@ -39,18 +42,38 @@ export default function CreatePage() {
       <Container>
         <h1>Create a new activity</h1>
         {error && <>Something went wrong</>}
-        <ActivityForm
-          onSubmit={handleSubmit}
-          isLoading={isLoading}
-          submitButtonText="Create Activity"
-          successMessage={successMessage}
-          isEditingState={false}
-          isPreviewMode={false}
-          setPreviewMode={() => {}}
-          activityData={activityData}
-          categoriesData={categoriesData}
-          selectedCategoryIds={selectedCategoryIds}
-        />
+        {!isPreviewMode ? (
+          <ActivityForm
+            onSubmit={handleSubmit}
+            isLoading={isLoading}
+            submitButtonText="Create Activity"
+            successMessage={successMessage}
+            isEditingState={false}
+            isPreviewMode={false}
+            setIsPreviewMode={setIsPreviewMode}
+            activityData={activityData}
+            categoriesData={categoriesData}
+            selectedCategoryIds={selectedCategoryIds}
+          />
+        ) : (
+          ""
+        )}
+
+        {isPreviewMode && (
+          <>
+            <ActivityPreview
+              data={activityData}
+              categoriesData={categoriesData}
+              selectedCategoryIds={selectedCategoryIds}
+              isEditingState={false}
+            />
+            <Button
+              text={"Continue editing"}
+              onClick={() => setIsPreviewMode(false)}
+              purpose="submit"
+            />
+          </>
+        )}
       </Container>
     </>
   );
