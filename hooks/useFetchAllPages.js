@@ -36,13 +36,13 @@ const fetchAllPages = async (endpoint) => {
  * Note: Dont use this hook for endpoints that return large datasets, as it fetches all pages at once.
  * Use with caution to avoid performance issues.
  * @param {string} endpoint - The API endpoint to fetch data from.
- * @returns {Object} - An object containing the fetched data, loading state, and error.
+ * @returns {Object} - An object containing the fetched data, loading state, error and isValidating.
  */
 export default function useFetchAllPages(endpoint) {
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading, isValidating } = useSWR(
     endpoint ? `all-pages-${endpoint}` : null,
     () => fetchAllPages(endpoint)
   );
 
-  return { data: data || [], isLoading, error };
+  return { data: data || [], isLoading, error, isValidating };
 }
