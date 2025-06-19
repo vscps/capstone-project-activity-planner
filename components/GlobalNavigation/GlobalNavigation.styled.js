@@ -7,7 +7,7 @@ export const NavWrapper = styled.nav`
   left: 0;
   width: 100%;
   display: flex;
-  background-color: grey;
+  background-color: #f5f5f5;
   border-top: 1px solid #444;
   height: 60px;
   z-index: 100;
@@ -18,23 +18,29 @@ export const NavIconLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #808080;
   font-size: 2rem;
   text-decoration: none;
   height: 100%;
 
-  &:hover {
-    background-color: darkgrey;
+  &:hover,
+  &:visited:hover {
+    background-color: rgb(240, 240, 240);
+    color: #808080;
 
     @media (max-width: 768px) {
       background-color: transparent;
     }
   }
 
-  &:active {
-    background-color: black;
+  &:visited {
+    color: #808080;
+  }
 
-    @media (max-width: 768p) {
+  &:active {
+    background-color: #f5f5f5;
+
+    @media (max-width: 768px) {
       background-color: transparent;
     }
   }
@@ -48,7 +54,8 @@ export const LogoLink = styled.div`
   height: 100%;
 
   &:hover,
-  &:active {
+  &:active,
+  &:visited {
     background-color: transparent;
   }
 
