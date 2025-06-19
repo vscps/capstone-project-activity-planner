@@ -1,7 +1,8 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+
 import ActivityDetail from "@/components/ActivityDetail/ActivityDetail";
-import Head from "next/head";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
 export default function Page() {

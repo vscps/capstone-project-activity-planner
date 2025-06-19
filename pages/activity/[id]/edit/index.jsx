@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import useSWR, { mutate } from "swr";
 
 import { useUpdateActivity } from "@/hooks/useActivityMutations";
@@ -12,7 +11,7 @@ import ActivityForm from "@/components/ActivityForm/ActivityForm";
 import ActivityPreview from "@/components/ActivityPreview/ActivityPreview";
 import Button from "@/components/Button/Button";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
-import { Container } from "@/components/ActivityList/ActivityList.styles";
+
 import {
   PaddingContainer,
   SubmitButtonRow,
@@ -40,7 +39,7 @@ export default function UpdatePage() {
     isValidating: isValidatingCategories,
   } = useFetchAllPages("/api/categories");
 
-  const { activityData, selectedCategoryIds, removeItem, setPreviewData } =
+  const { activityData, selectedCategoryIds, removeItem } =
     useActivityPreviewMode({ baseData: data, categoriesData });
 
   const isInitialLoading =
@@ -61,7 +60,7 @@ export default function UpdatePage() {
 
   const handleSubmit = async (formData) => {
     try {
-      const updatedActivity = await updateActivity(id, formData);
+      await updateActivity(id, formData);
       mutate(`/api/activities/${id}`);
       setIsEditingState(false);
       setSuccessMessage(`Activity "${formData.title}" updated successfully!`);
@@ -135,7 +134,6 @@ export default function UpdatePage() {
               onClick={() => setIsPreviewMode(false)}
               purpose="submit"
             />
-            {console.log(isEditingState)}
           </>
         )}
       </PaddingContainer>

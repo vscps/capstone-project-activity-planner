@@ -14,7 +14,6 @@ export default function useActivityPreviewMode({ baseData, categoriesData }) {
     { defaultValue: null }
   );
 
-  // Cleanup localStorage on route change
   useEffect(() => {
     const clearOnRouteChange = () => removeItem();
     router.events.on("routeChangeStart", clearOnRouteChange);
