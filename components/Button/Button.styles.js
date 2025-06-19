@@ -14,6 +14,8 @@ export const FavoriteIcon = styled(MdBookmarkAdd)`
   font-size: 25px;
   z-index: 10;
   cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
 `;
 
 export const RemoveFavoriteIcon = styled(MdBookmarkAdded)`
@@ -22,6 +24,8 @@ export const RemoveFavoriteIcon = styled(MdBookmarkAdded)`
   font-size: 25px;
   z-index: 10;
   cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
 `;
 
 export const DeleteIcon = styled(MdDelete)`
@@ -29,6 +33,8 @@ export const DeleteIcon = styled(MdDelete)`
   color: white;
   font-size: 25px;
   cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
 `;
 
 export const EditIcon = styled(MdEdit)`
@@ -36,6 +42,8 @@ export const EditIcon = styled(MdEdit)`
   color: white;
   font-size: 25px;
   cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
 `;
 
 export const SubmitIcon = styled(MdArrowForward)`
@@ -43,6 +51,8 @@ export const SubmitIcon = styled(MdArrowForward)`
   color: white;
   font-size: 25px;
   cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
 `;
 
 export const CancelIcon = styled(MdCancel)`
@@ -50,6 +60,8 @@ export const CancelIcon = styled(MdCancel)`
   color: white;
   font-size: 25px;
   cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
 `;
 
 export const ConfirmIcon = styled(GiConfirmed)`
@@ -57,25 +69,17 @@ export const ConfirmIcon = styled(GiConfirmed)`
   color: white;
   font-size: 25px;
   cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
 `;
 
 export const StyledButton = styled.button`
   align-items: center;
   background-clip: padding-box;
   background-color: ${(props) =>
-    props.$purpose === "favorite"
-      ? "#83b36c"
-      : props.$purpose === "delete"
+    props.$purpose === "delete" || props.$purpose === "cancel"
       ? "#f44336"
-      : props.$purpose === "edit"
-      ? "#FFC200"
-      : props.$purpose === "submit"
-      ? "#FFC200"
-      : props.$purpose === "cancel"
-      ? "#f44336"
-      : props.$purpose === "confirm"
-      ? "#83b36c"
-      : ""};
+      : "#127b88"};
   border: 1px solid transparent;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -87,6 +91,7 @@ export const StyledButton = styled.button`
     Arial, sans-serif;
   font-size: 16px;
   font-weight: 600;
+  white-space: nowrap;
   justify-content: center;
   line-height: 1.25;
   margin: 15px 0px;
@@ -104,19 +109,9 @@ export const StyledButton = styled.button`
   &:not(:disabled):hover,
   &:not(:disabled):focus {
     background-color: ${(props) =>
-      props.$purpose === "favorite"
-        ? "#83b36c"
-        : props.$purpose === "delete"
+      props.$purpose === "delete" || props.$purpose === "cancel"
         ? "#f44336"
-        : props.$purpose === "edit"
-        ? "#FFC200"
-        : props.$purpose === "submit"
-        ? "#FFC200"
-        : props.$purpose === "cancel"
-        ? "#f44336"
-        : props.$purpose === "confirm"
-        ? "#83b36c"
-        : ""};
+        : "#127b88"};
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
 
@@ -126,19 +121,9 @@ export const StyledButton = styled.button`
 
   &:not(:disabled):active {
     background-color: ${(props) =>
-      props.$purpose === "favorite"
-        ? "#83b36c"
-        : props.$purpose === "delete"
+      props.$purpose === "delete" || props.$purpose === "cancel"
         ? "#f44336"
-        : props.$purpose === "edit"
-        ? "#FFC200"
-        : props.$purpose === "submit"
-        ? "#FFC200"
-        : props.$purpose === "cancel"
-        ? "#f44336"
-        : props.$purpose === "confirm"
-        ? "#83b36c"
-        : ""};
+        : "#127b88"};
     box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
     transform: translateY(0);
   }
@@ -157,19 +142,9 @@ export const StyledButtonLink = styled(Link)`
   align-items: center;
   background-clip: padding-box;
   background-color: ${(props) =>
-    props.$purpose === "favorite"
-      ? "#83b36c"
-      : props.$purpose === "delete"
+    props.$purpose === "delete" || props.$purpose === "cancel"
       ? "#f44336"
-      : props.$purpose === "edit"
-      ? "#FFC200"
-      : props.$purpose === "submit"
-      ? "#FFC200"
-      : props.$purpose === "cancel"
-      ? "#f44336"
-      : props.$purpose === "confirm"
-      ? "#83b36c"
-      : ""};
+      : "#127b88"};
   border: 1px solid transparent;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -181,6 +156,7 @@ export const StyledButtonLink = styled(Link)`
     Arial, sans-serif;
   font-size: 16px;
   font-weight: 600;
+  white-space: nowrap;
   justify-content: center;
   line-height: 1.25;
   margin: 15px 15px 15px 0;
@@ -206,19 +182,9 @@ export const StyledButtonLink = styled(Link)`
   &:not(:disabled):hover,
   &:not(:disabled):focus {
     background-color: ${(props) =>
-      props.$purpose === "favorite"
-        ? "#83b36c"
-        : props.$purpose === "delete"
+      props.$purpose === "delete" || props.$purpose === "cancel"
         ? "#f44336"
-        : props.$purpose === "edit"
-        ? "#FFC200"
-        : props.$purpose === "submit"
-        ? "#FFC200"
-        : props.$purpose === "cancel"
-        ? "#f44336"
-        : props.$purpose === "confirm"
-        ? "#83b36c"
-        : ""};
+        : "#127b88"};
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
 
@@ -228,19 +194,9 @@ export const StyledButtonLink = styled(Link)`
 
   &:not(:disabled):active {
     background-color: ${(props) =>
-      props.$purpose === "favorite"
-        ? "#83b36c"
-        : props.$purpose === "delete"
+      props.$purpose === "delete" || props.$purpose === "cancel"
         ? "#f44336"
-        : props.$purpose === "edit"
-        ? "#FFC200"
-        : props.$purpose === "submit"
-        ? "#FFC200"
-        : props.$purpose === "cancel"
-        ? "#f44336"
-        : props.$purpose === "confirm"
-        ? "#83b36c"
-        : ""};
+        : "#127b88"};
     box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
     transform: translateY(0);
   }

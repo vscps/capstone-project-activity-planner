@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Image from "next/image";
-import Button from "@/components/Button/Button";
 
 export const FormWrapper = styled.form`
   display: flex;
@@ -23,7 +22,6 @@ export const PlaceholderImage = styled(Image)`
 export const SubmitButtonRow = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
   width: 100%;
   justify-content: center;
   gap: 15px;
