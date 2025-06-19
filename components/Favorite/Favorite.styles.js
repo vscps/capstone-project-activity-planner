@@ -12,6 +12,10 @@ export const FavoriteIcon = styled(MdBookmarkAdd)`
   z-index: 10;
   cursor: pointer;
   filter: drop-shadow(2px 2px 2px #777);
+
+  @media (max-width: 480px) {
+    top: -25px;
+  }
 `;
 
 export const RemoveFavoriteIcon = styled(MdBookmarkAdded)`
