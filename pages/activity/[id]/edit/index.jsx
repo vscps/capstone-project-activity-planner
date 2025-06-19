@@ -76,6 +76,7 @@ export default function UpdatePage() {
     <>
       <Head>
         <title>{titleMessage}</title>
+        <meta name="description" content="Edit your activity" />
       </Head>
       <PaddingContainer>
         <h1>{titleMessage}</h1>
