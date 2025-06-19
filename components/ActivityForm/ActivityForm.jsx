@@ -1,4 +1,7 @@
 import { useForm } from "react-hook-form";
+import useLocalStorageState from "use-local-storage-state";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 import FormField from "../FormField/FormField";
 import InputField from "../FormControls/InputField/InputField";
@@ -17,17 +20,27 @@ export default function ActivityForm({
   isLoading = false,
   successMessage = null,
   isEditingState,
+  isPreviewMode,
+  setIsPreviewMode,
   activityData,
   categoriesData,
   selectedCategoryIds,
   submitButtonText,
 }) {
+  const [previewData, setPreviewData, { removeItem }] = useLocalStorageState(
+    "previewActivityData",
+    { defaultValue: {} }
+  );
+
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     setValue,
     getValues,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       title: isEditingState ? activityData?.title || "" : "",
@@ -38,15 +51,45 @@ export default function ActivityForm({
     },
   });
 
+  useEffect(() => {
+    if (!isPreviewMode && activityData) {
+      reset({
+        title: activityData.title || "",
+        description: activityData.description || "",
+        area: activityData.area || "",
+        country: activityData.country || "",
+        categories: selectedCategoryIds || [],
+      });
+    }
+  }, [isPreviewMode, activityData, selectedCategoryIds, reset]);
+
   const handleFormSubmit = async (data) => {
     await onSubmit(data);
+    removeItem();
   };
+
+  const handlePreview = () => {
+    const formData = getValues();
+    setPreviewData({
+      ...formData,
+      ...(activityData?._id ? { _id: activityData._id } : {}),
+      ...(activityData?.imageUrl ? { imageUrl: activityData.imageUrl } : {}),
+    });
+    setIsPreviewMode(true);
+  };
+
+  const handleCancel = () => {
+    removeItem();
+    router.push(`/activity/${activityData._id}`);
+  };
+
   const buttonPurpose = isEditingState ? "confirm" : "submit";
+
   return (
     <FormWrapper onSubmit={handleSubmit(handleFormSubmit)}>
       <PlaceholderImage
         src={
-          isEditingState
+          isEditingState && activityData?.imageUrl
             ? activityData.imageUrl
             : "/assets/images/placeholder.png"
         }
@@ -110,12 +153,19 @@ export default function ActivityForm({
           isLoading={isLoading}
           text={submitButtonText}
         />
+        <Button
+          type="button"
+          purpose="preview"
+          onClick={handlePreview}
+          text="Preview"
+        />
+
         {isEditingState && (
           <Button
+            type="button"
             purpose="cancel"
             text="Cancel editing"
-            as="a"
-            href={`../${activityData._id}`}
+            onClick={handleCancel}
           />
         )}
       </SubmitButtonRow>
