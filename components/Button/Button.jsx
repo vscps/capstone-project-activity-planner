@@ -1,9 +1,11 @@
 import {
+  ArrowIcon,
   CancelIcon,
   ConfirmIcon,
   DeleteIcon,
   EditIcon,
   FavoriteIcon,
+  PreviewIcon,
   RemoveFavoriteIcon,
   StyledButton,
   StyledButtonLink,
@@ -42,6 +44,12 @@ export default function Button({
         break;
       case "confirm":
         Icon = <ConfirmIcon />;
+        break;
+      case "back":
+        Icon = <ArrowIcon />;
+        break;
+      case "preview":
+        Icon = <PreviewIcon />;
         break;
       default:
         Icon = null;

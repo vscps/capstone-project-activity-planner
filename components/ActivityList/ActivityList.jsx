@@ -132,34 +132,22 @@ export default function ActivityList() {
         isOpen={isFilterOpen}
         onToggle={handleToggleFilter}
       />
-      <Listing>
-        {activities.length > 0 ? (
-          <>
-            {activities.map((activity) => (
-              <Activity data={activity} key={activity._id || activity.id} />
-            ))}
 
-            {hasMore ? (
-              <div ref={loadMoreRef}>
-                {isValidating && (
-                  <LoadingMessage>Loading more activities...</LoadingMessage>
-                )}
-              </div>
-            ) : (
-              ""
-            )}
-          </>
-        ) : (
-          ""
-        )}
+      <Listing>
+        {activities.map((activity) => (
+          <Activity data={activity} key={activity._id || activity.id} />
+        ))}
       </Listing>
-      {hasMore ? (
-        ""
-      ) : (
-        <>
-          <EndMessage>No more activities available</EndMessage>
-        </>
+
+      {hasMore && (
+        <div ref={loadMoreRef}>
+          {isValidating && (
+            <LoadingMessage>Loading more activities...</LoadingMessage>
+          )}
+        </div>
       )}
+
+      {!hasMore && <EndMessage>No more activities available</EndMessage>}
     </Container>
   );
 }

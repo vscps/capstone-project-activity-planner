@@ -6,11 +6,10 @@ import TextareaField from "../FormControls/TextareaField/TextareaField";
 import CategoryCheckboxGroup from "../FormControls/CheckboxGroup/CheckboxGroup";
 import Button from "../Button/Button";
 import {
-  SubmitButton,
-  CancelButton,
   FormWrapper,
   PlaceholderImage,
   SubmitButtonRow,
+  MessageRow,
 } from "./ActivityForm.styles";
 
 export default function ActivityForm({
@@ -119,8 +118,10 @@ export default function ActivityForm({
             href={`../${activityData._id}`}
           />
         )}
-        {!isEditingState && successMessage && <p>{successMessage}</p>}
       </SubmitButtonRow>
+      {!isEditingState && successMessage && (
+        <MessageRow>{successMessage}</MessageRow>
+      )}
     </FormWrapper>
   );
 }
