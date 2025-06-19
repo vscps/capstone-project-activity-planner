@@ -13,6 +13,10 @@ import ActivityPreview from "@/components/ActivityPreview/ActivityPreview";
 import Button from "@/components/Button/Button";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { Container } from "@/components/ActivityList/ActivityList.styles";
+import {
+  PaddingContainer,
+  SubmitButtonRow,
+} from "@/components/ActivityForm/ActivityForm.styles";
 
 export default function UpdatePage() {
   const router = useRouter();
@@ -76,7 +80,7 @@ export default function UpdatePage() {
       <Head>
         <title>{titleMessage}</title>
       </Head>
-      <Container>
+      <PaddingContainer>
         <h1>{titleMessage}</h1>
         {isEditingState & !isPreviewMode ? (
           <>
@@ -101,17 +105,21 @@ export default function UpdatePage() {
 
         {!isEditingState & !isPreviewMode ? (
           <>
-            <Button
-              text={"Continue editing"}
-              onClick={() => setIsEditingState(true)}
-              purpose="submit"
-            />
-            <p>
-              or go back to the{" "}
-              <Link href={`../${data._id}`}>
-                {data.title} activity details page.
-              </Link>
-            </p>
+            <SubmitButtonRow>
+              {" "}
+              <Button
+                text={"Continue editing"}
+                onClick={() => setIsEditingState(true)}
+                purpose="edit"
+              />
+              <Button
+                text={"Back to activity"}
+                onClick={() => setIsEditingState(true)}
+                purpose="back"
+                as={"a"}
+                href={`../${data._id}`}
+              />
+            </SubmitButtonRow>
           </>
         ) : (
           ""
@@ -132,7 +140,7 @@ export default function UpdatePage() {
             {console.log(isEditingState)}
           </>
         )}
-      </Container>
+      </PaddingContainer>
     </>
   );
 }

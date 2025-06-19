@@ -4,7 +4,6 @@ export const ConfirmationWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 10px;
   padding: 15px;
   background-color: #f5f5f5;
   border-radius: 8px;
@@ -49,4 +48,5 @@ export const SuccessMessage = styled.p`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+  gap: 15px;
 `;

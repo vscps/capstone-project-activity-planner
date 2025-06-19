@@ -48,7 +48,6 @@ export const Heading = styled.h1`
   padding-bottom: 5px;
   border-bottom: 1px solid white;
   word-wrap: break-word;
-  width: 100%;
 `;
 
 export const CategoryArea = styled.div`

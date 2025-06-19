@@ -6,7 +6,12 @@ import Favorite from "../Favorite/Favorite";
 export const Wrapper = styled.article`
   width: 380px;
   position: relative;
-  margin: 15px 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  @media (min-width: 481px) {
+    margin: 15px 20px;
+  }
 `;
 
 export const FavoriteIcon = styled(Favorite)`

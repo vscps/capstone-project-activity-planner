@@ -7,8 +7,8 @@ import { useCreateActivity } from "@/hooks/useActivityMutations";
 import ActivityPreview from "@/components/ActivityPreview/ActivityPreview";
 import Button from "@/components/Button/Button";
 import useFetchAllPages from "@/hooks/useFetchAllPages";
+import { PaddingContainer } from "@/components/ActivityForm/ActivityForm.styles";
 import useActivityPreviewMode from "@/hooks/useActivityPreviewMode";
-import { Container } from "@/components/ActivityList/ActivityList.styles";
 
 export default function CreatePage() {
   const router = useRouter();
@@ -39,8 +39,16 @@ export default function CreatePage() {
       <Head>
         <title>Create a new activity</title>
       </Head>
-      <Container>
+      <PaddingContainer>
         <h1>Create a new activity</h1>
+        {error && <>{`Something went wrong`}</>}
+        <ActivityForm
+          onSubmit={handleSubmit}
+          isLoading={isLoading}
+          submitButtonText="Create Activity"
+          successMessage={successMessage}
+          categoriesData={categoriesData}
+        />
         {error && <>Something went wrong</>}
         {!isPreviewMode ? (
           <ActivityForm
@@ -74,7 +82,7 @@ export default function CreatePage() {
             />
           </>
         )}
-      </Container>
+      </PaddingContainer>
     </>
   );
 }
