@@ -37,7 +37,8 @@ export default function CreatePage() {
   return (
     <>
       <Head>
-        <title>Create a new activity</title>
+        <title>Create activity</title>
+        <meta name="description" content="Create your activity" />
       </Head>
       <PaddingContainer>
         <h1>Create a new activity</h1>

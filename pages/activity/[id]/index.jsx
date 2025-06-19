@@ -16,7 +16,8 @@ export default function Page() {
   return (
     <>
       <Head>
-        <title>Activity details page: {data.title}</title>
+        <title>Activity: {data.title}</title>
+        <meta name="description" content="Your activity details" />
       </Head>
       <ActivityDetail data={data} />
     </>

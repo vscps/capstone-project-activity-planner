@@ -1,3 +1,4 @@
+import Head from "next/head";
 import GlobalStyle from "../styles";
 import { SWRConfig } from "swr";
 import { Inter } from "next/font/google";
@@ -30,6 +31,12 @@ export default function App({ Component, pageProps }) {
         },
       }}
     >
+      <Head>
+        <title>ActivityHub</title>
+        <meta name="description" content="Dein Activity Planner" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <main className={`${BebasNeue.variable} ${inter.variable}`}>
         <GlobalStyle />
         <Component {...pageProps} />
