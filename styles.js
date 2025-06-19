@@ -18,6 +18,7 @@ export default createGlobalStyle`
     font-style: normal;
     font-weight: 400;
     text-transform: uppercase;
+    margin: 0;
   }
 
   h2 {
