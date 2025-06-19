@@ -7,10 +7,32 @@ import { MdCancel } from "react-icons/md";
 import { GiConfirmed } from "react-icons/gi";
 import { MdArrowForward } from "react-icons/md";
 import Link from "next/link";
+import { LuArrowLeft } from "react-icons/lu";
+import { PiMagnifyingGlassFill } from "react-icons/pi";
+
+export const ArrowIcon = styled(LuArrowLeft)`
+  margin: 5px;
+  color: white;
+  font-size: 25px;
+  z-index: 10;
+  cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
+`;
+
+export const PreviewIcon = styled(PiMagnifyingGlassFill)`
+  margin: 5px;
+  color: white;
+  font-size: 25px;
+  z-index: 10;
+  cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
+`;
 
 export const FavoriteIcon = styled(MdBookmarkAdd)`
   margin: 5px;
-  color: #dad8d8;
+  color: white;
   font-size: 25px;
   z-index: 10;
   cursor: pointer;
@@ -20,7 +42,7 @@ export const FavoriteIcon = styled(MdBookmarkAdd)`
 
 export const RemoveFavoriteIcon = styled(MdBookmarkAdded)`
   margin: 0 5px 0 0;
-  color: #ffc200;
+  color: white;
   font-size: 25px;
   z-index: 10;
   cursor: pointer;
