@@ -28,3 +28,10 @@ export const SubmitButtonRow = styled.div`
   justify-content: center;
   gap: 15px;
 `;
+
+export const MessageRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+`;
