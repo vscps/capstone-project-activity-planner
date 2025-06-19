@@ -6,6 +6,19 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 500px;
+
+  @media (max-width: 480px) {
+    width: 100vw;
+  }
+`;
+
+export const Card = styled.article`
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 `;
 
 export const ImageArea = styled.div`
@@ -69,7 +82,7 @@ export const Category = styled.button`
   font-size: 12px;
 `;
 
-export const MainContent = styled.div`
+export const MainContent = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;

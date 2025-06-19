@@ -27,9 +27,7 @@ export default function ActivityDetail({ data }) {
     return <LoadingSpinner variant="page" />;
   }
 
-  const buttonText = isFavorite(data._id)
-    ? "Remove from favorites"
-    : "Add to favorites";
+  const buttonText = isFavorite(data._id) ? "Remove" : "Add";
 
   return (
     <Container>
@@ -75,14 +73,9 @@ export default function ActivityDetail({ data }) {
           purpose="favorite"
           isFavorite={isFavorite(data._id)}
         />
-        <Button
-          text={"Edit Activity"}
-          purpose="edit"
-          as="a"
-          href={`${data._id}/edit`}
-        />
+        <Button text={"Edit"} purpose="edit" as="a" href={`${data._id}/edit`} />
+        <ActivityDelete activityID={data._id} activityTitle={data.title} />
       </OptionsWrapper>
-      <ActivityDelete activityID={data._id} activityTitle={data.title} />
     </Container>
   );
 }

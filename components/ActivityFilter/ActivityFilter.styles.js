@@ -6,11 +6,6 @@ export const FilterContainer = styled.div`
   width: 100%;
   max-width: 380px;
 
-  /* sticky for useEffect -> setSize(1); in ActivityList to simulating UX best practice */
-  /* position: sticky;
-  top: 20px;
-  z-index: 10; */
-
   @media (max-width: 768px) {
     padding: 0 15px;
   }

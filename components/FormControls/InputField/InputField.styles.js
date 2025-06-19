@@ -6,6 +6,7 @@ export const StyledInput = styled.input`
   font-size: 1rem;
   background-color: white;
   border: 1px solid #ccc;
+  color: #808080;
   border-radius: 4px;
   padding: 0.5rem;
 `;
