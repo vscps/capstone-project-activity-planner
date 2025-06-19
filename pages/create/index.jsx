@@ -42,13 +42,6 @@ export default function CreatePage() {
       <PaddingContainer>
         <h1>Create a new activity</h1>
         {error && <>{`Something went wrong`}</>}
-        <ActivityForm
-          onSubmit={handleSubmit}
-          isLoading={isLoading}
-          submitButtonText="Create Activity"
-          successMessage={successMessage}
-          categoriesData={categoriesData}
-        />
         {error && <>Something went wrong</>}
         {!isPreviewMode ? (
           <ActivityForm

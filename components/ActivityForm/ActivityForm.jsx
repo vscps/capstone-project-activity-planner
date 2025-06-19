@@ -155,7 +155,7 @@ export default function ActivityForm({
         />
         <Button
           type="button"
-          purpose="confirm"
+          purpose="preview"
           onClick={handlePreview}
           text="Preview"
         />
